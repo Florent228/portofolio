@@ -18,8 +18,8 @@ const Contact = () => {
         {/* Tabs Menu */}
         <div className="flex justify-center mb-8 gap-4 flex-wrap" data-aos-delay="600" data-aos="fade-down">
           {[
-            { value: "contact", label: "Contact Me", icon: "bx bx-envelope" },
-            { value: "support", label: "Support Me", icon: "bx bx-heart" },
+            { value: "contact", label: "Me Contacter", icon: "bx bx-envelope" },
+            { value: "support", label: "Me Soutenir", icon: "bx bx-heart" },
           ].map((tab) => (
             <button
               key={tab.value}
@@ -71,39 +71,39 @@ const Contact = () => {
               <div className="rounded-lg py-12 px-7 shadow-lg border h-fit border-white max-w-xl w-full mx-auto lg:mx-0">
                 <h3 className="text-xl font-semibold mb-6 text-gray-800 dark:text-white flex items-center gap-2">
                   <i className="bx bx-envelope text-lg" />
-                  Send Me a Message
+                  Envoyez-moi un Message
                 </h3>
                 <form className="grid gap-4">
                   <input
                     type="text"
-                    placeholder="Your Name"
+                    placeholder="Votre Nom"
                     className="p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-white text-sm focus:outline-none focus:ring-2 focus:ring-gray-800"
                   />
                   <input
                     type="email"
-                    placeholder="Your Email"
+                    placeholder="Votre Email"
                     className="p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-white text-sm focus:outline-none focus:ring-2 focus:ring-gray-800"
                   />
                   <textarea
-                    placeholder="Your Message"
+                    placeholder="Votre Message"
                     className="p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-white text-sm focus:outline-none focus:ring-2 focus:ring-gray-800"
                     rows="5"
                   />
-                  <Tippy content="Send your message" placement="top">
+                  <Tippy content="Envoyer votre message" placement="top">
                     <button
                       type="button"
                       onClick={() => {
                         Swal.fire({
-                          title: "Message Sent! ✉️",
-                          text: "Thank you for reaching out. I’ll get back to you soon!",
+                          title: "Message Envoyé ! ✉️",
+                          text: "Merci de m'avoir contacté. Je vous répondrai bientôt !",
                           icon: "success",
                           confirmButtonColor: "#1F2937",
-                          confirmButtonText: "Cool 😎",
+                          confirmButtonText: "Parfait 😎",
                         });
                       }}
                       className="px-4 py-3 bg-gray-800 text-white dark:bg-white dark:text-gray-800 rounded-lg font-medium flex items-center justify-center gap-2 transition-all transform hover:-translate-y-1"
                     >
-                      Send
+                      Envoyer
                       <i className="bx bx-send text-[1.2rem] translate-y-[1px]" />
                     </button>
                   </Tippy>
@@ -125,7 +125,7 @@ const Contact = () => {
                         {item.label}
                       </h4>
                       <p className="text-sm text-gray-800 dark:text-white mb-4 leading-relaxed">
-                        If my work has helped or inspired you, consider supporting me by scanning the QR code below. Every little bit means a lot 🙌
+                        Si mon travail vous a aidé ou inspiré, pensez à me soutenir en scannant le code QR ci-dessous. Chaque petit geste compte beaucoup 🙌
                       </p>
                       <img
                         src={item.imageSrc}

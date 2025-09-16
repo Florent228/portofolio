@@ -29,7 +29,7 @@ const About = () => {
                     <div className="w-full flex justify-center lg:justify-start" data-aos-delay="600" data-aos="fade-right">
                         <img
                             src={aboutData.image}
-                            alt="About Me"
+                            alt="À Propos de Moi"
                             className="w-full max-w-md rounded-xl shadow-lg object-cover 
                              border-8 border-white dark:border-gray-800 
                              hover:shadow-3xl hover:-translate-y-2 
@@ -47,7 +47,7 @@ const About = () => {
                                     <div className="w-12 h-12 p-4 flex items-center justify-center rounded-lg shadow-lg bg-gray-800 dark:bg-white dark:text-gray-800 text-white">
                                         <i className={`bx ${aboutData.aboutNarrative.whoAmI.icon} text-xl`}></i>
                                     </div>
-                                    <h3 className="text-xl font-bold text-gray-800 dark:text-white">Who Am I</h3>
+                                    <h3 className="text-xl font-bold text-gray-800 dark:text-white">Qui suis-je</h3>
                                 </div>
                                 <p className="text-gray-700 dark:text-gray-300">
                                     {aboutData.aboutNarrative.whoAmI.text}
@@ -60,7 +60,7 @@ const About = () => {
                                     <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-gray-800 p-4 dark:bg-white dark:text-gray-800 shadow-lg text-white">
                                         <i className={`bx ${aboutData.aboutNarrative.approach.icon} text-xl`}></i>
                                     </div>
-                                    <h3 className="text-xl font-bold text-gray-800 dark:text-white">My Approach</h3>
+                                    <h3 className="text-xl font-bold text-gray-800 dark:text-white">Mon Approche</h3>
                                 </div>
                                 <p className="text-gray-700 dark:text-gray-300">
                                     {aboutData.aboutNarrative.approach.text}
@@ -71,7 +71,7 @@ const About = () => {
                         {/* Personal Info Heading */}
                         <div className="flex items-center gap-2 mb-4" data-aos-delay="600" data-aos="fade-down">
                             <i className="bx bx-info-circle text-2xl text-gray-800 dark:text-white" aria-hidden="true"></i>
-                            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">Personal Info</h2>
+                            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">Informations Personnelles</h2>
                         </div>
 
                         {/* Biodata Grid - 2x2 Layout */}
@@ -91,19 +91,19 @@ const About = () => {
 
 
 
-                        <Tippy content="Download My Resume">
+                        <Tippy content="Télécharger mon CV">
                             <button
                                 onClick={() => {
                                     Swal.fire({
-                                        title: "Not Available Yet 😅",
-                                        text: "My resume is still in progress. Please check back later!",
+                                        title: "Pas Encore Disponible 😅",
+                                        text: "Mon CV est encore en cours de préparation. Veuillez revenir plus tard !",
                                         icon: "info",
                                         confirmButtonColor: "#1F2937",
-                                        confirmButtonText: "Alright",
+                                        confirmButtonText: "D'accord",
                                     });
                                 }}
                                 className={resumeButtonClasses}
-                                aria-label="Download Resume"
+                                aria-label="Télécharger CV"
                                 data-aos-delay="600"
                                 data-aos="fade-down"
                             >

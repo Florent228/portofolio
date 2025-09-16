@@ -35,9 +35,9 @@ const Portfolio = () => {
                     data-aos="fade-down"
                 >
                     {[
-                        { value: "projects", label: "Projects", icon: "bx bx-briefcase" },
-                        { value: "certificates", label: "Certificates", icon: "bx bx-award" },
-                        { value: "tech", label: "Tech Stack", icon: "bx bx-code-alt" },
+                        { value: "projects", label: "Projets", icon: "bx bx-briefcase" },
+                        { value: "certificates", label: "Certificats", icon: "bx bx-award" },
+                        { value: "tech", label: "Technologies", icon: "bx bx-code-alt" },
                     ].map((tab) => (
                         <button
                             key={tab.value}
@@ -91,7 +91,7 @@ const Portfolio = () => {
                                             </span>
                                         ))}
                                     </div>
-                                    <Tippy content="View Demo" placement="top">
+                                    <Tippy content="Voir la Démo" placement="top">
                                         <a
                                             href={project.demo}
                                             target="_blank"
@@ -99,7 +99,7 @@ const Portfolio = () => {
                                             className="inline-flex justify-center w-full items-center gap-2 px-4 py-2 bg-gray-800 text-white dark:bg-white dark:text-gray-800 rounded-lg font-medium transition-all hover:-translate-y-1"
                                         >
                                             <span className="flex items-center gap-1">
-                                                <span>Demo</span>
+                                                <span>Démo</span>
                                                 <i className="bx bx-link-external"></i>
                                             </span>
                                         </a>

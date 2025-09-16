@@ -85,7 +85,7 @@ const Navbar = () => {
                             <a href="#" className="flex items-center gap-2">
                                 <i className="bx bx-code-alt text-2xl text-gray-800 dark:text-white"></i>
                                 <h1 className="text-2xl font-semibold text-gray-800 dark:text-white">
-                                    My Portofolio
+                                    Mon Portfolio
                                 </h1>
                             </a>
 
@@ -176,7 +176,7 @@ const Navbar = () => {
                                     aria-label="Toggle dark mode"
                                 >
                                     <i className={`bx ${isDarkMode ? 'bx-sun' : 'bx-moon'} text-xl`}></i>
-                                    <span>{isDarkMode ? 'Light Mode' : 'Dark Mode'}</span>
+                                    <span>{isDarkMode ? 'Mode Clair' : 'Mode Sombre'}</span>
                                 </button>
                             </li>
                         </ul>
@@ -185,7 +185,7 @@ const Navbar = () => {
                     {/* Footer */}
                     <div className="p-6 border-t border-gray-200 dark:border-gray-700">
                         <div className="text-center text-sm text-gray-500 dark:text-gray-400">
-                            © {currentYear()} Hizkia Siahaan. All rights reserved
+                            © {currentYear()} Hizkia Siahaan. Tous droits réservés
                         </div>
                     </div>
                 </div>

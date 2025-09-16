@@ -76,7 +76,7 @@ const Home = () => {
 
             <div className="flex items-center space-x-4" data-aos-delay="600" data-aos="fade-down">
               <span className="text-gray-800 dark:text-white font-medium">
-                Follow me on:
+                Suivez-moi sur :
               </span>
               <div className="flex space-x-3">
                 {homeData.socialMedia.map((social, index) => (
@@ -117,11 +117,11 @@ const Home = () => {
                     <button
                       onClick={() =>
                         Swal.fire({
-                          title: "Not Available Yet 😅",
-                          text: "This feature or file is not ready yet. Please check back later!",
+                          title: "Pas Encore Disponible 😅",
+                          text: "Cette fonctionnalité ou ce fichier n'est pas encore prêt. Veuillez revenir plus tard !",
                           icon: "info",
                           confirmButtonColor: "#1F2937",
-                          confirmButtonText: "Alright",
+                          confirmButtonText: "D'accord",
                         })
                       }
                       className={`inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 ${btn.type === "primary"
@@ -144,7 +144,7 @@ const Home = () => {
             {/* Quick Stats Heading */}
             <h4 className="flex items-center gap-2 text-lg font-semibold mb-4 text-gray-800 dark:text-white">
               <i className="bx bx-bar-chart-alt text-base" />
-              Quick Stats:
+              Statistiques Rapides :
             </h4>
 
             {/* Stats Grid */}

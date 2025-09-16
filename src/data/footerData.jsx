@@ -3,23 +3,23 @@ const footerData = {
         name: "Hizkia Siahaan",
         icon: "bx bx-code-alt",
         description:
-            "Frontend Developer specializing in UI/UX, modern web technologies, and building smooth digital experiences with clean code & creative flow.",
+            "Développeur Frontend spécialisé en UI/UX, technologies web modernes, et création d'expériences numériques fluides avec du code propre et un flux créatif.",
     },
 
     navigationIcon: "bx bx-navigation",
     socialsIcon: "bx bx-share-alt",
 
     navigation: [
-        { label: "Home", href: "#home" },
-        { label: "About", href: "#about" },
-        { label: "Projects", href: "#projects" },
+        { label: "Accueil", href: "#home" },
+        { label: "À Propos", href: "#about" },
+        { label: "Projets", href: "#projects" },
         { label: "Contact", href: "#contact" },
     ],
 
     legalLinks: [
-        { label: "Privacy Policy", href: "#privacy" },
-        { label: "Terms of Use", href: "#terms" },
-        { label: "Sitemap", href: "#sitemap" },
+        { label: "Politique de Confidentialité", href: "#privacy" },
+        { label: "Conditions d'Utilisation", href: "#terms" },
+        { label: "Plan du Site", href: "#sitemap" },
     ],
 
 
@@ -45,13 +45,13 @@ const footerData = {
 
 
     formSubscription: {
-        title: "Subscribe to Newsletter",
-        description: "Stay updated with my latest projects and articles.",
-        placeholder: "Enter your email",
-        buttonText: "Subscribe",
+        title: "S'abonner à la Newsletter",
+        description: "Restez informé de mes derniers projets et articles.",
+        placeholder: "Entrez votre email",
+        buttonText: "S'abonner",
     },
 
-    copyright: "© 2025 Hizkia Siahaan. All rights reserved.",
+    copyright: "© 2025 Hizkia Siahaan. Tous droits réservés.",
 };
 
 export default footerData;

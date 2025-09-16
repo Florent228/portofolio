@@ -82,23 +82,23 @@ const Testimonials = () => {
         const newErrors = {};
 
         if (!formData.name.trim()) {
-            newErrors.name = 'Name is required';
+            newErrors.name = 'Le nom est requis';
         }
 
         if (!formData.email.trim()) {
-            newErrors.email = 'Email is required';
+            newErrors.email = 'L\'email est requis';
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-            newErrors.email = 'Invalid email format';
+            newErrors.email = 'Format d\'email invalide';
         }
 
         if (!formData.content.trim()) {
-            newErrors.content = 'Testimonial is required';
+            newErrors.content = 'Le témoignage est requis';
         } else if (formData.content.trim().length < 10) {
-            newErrors.content = 'Testimonial must be at least 10 characters';
+            newErrors.content = 'Le témoignage doit contenir au moins 10 caractères';
         }
 
         if (!formData.position.trim()) {
-            newErrors.position = 'Position is required';
+            newErrors.position = 'Le poste est requis';
         }
 
         setErrors(newErrors);
@@ -131,7 +131,7 @@ const Testimonials = () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Failed to submit testimonial. Please try again.',
+                text: 'Échec de l\'envoi du témoignage. Veuillez réessayer.',
                 confirmButtonColor: '#1f2937',
                 customClass: {
                     popup: 'dark:bg-gray-800 dark:text-white',
@@ -156,8 +156,8 @@ const Testimonials = () => {
         // Show success message
         Swal.fire({
             icon: 'success',
-            title: 'Thank You!',
-            text: 'Testimonial submitted successfully!',
+            title: 'Merci !',
+            text: 'Témoignage envoyé avec succès !',
             confirmButtonColor: '#1f2937',
             customClass: {
                 popup: 'dark:bg-gray-800 dark:text-white',
@@ -188,10 +188,10 @@ const Testimonials = () => {
                 {/* Header */}
                 <div className="text-center mb-16" data-aos-delay="600" data-aos="fade-down">
                     <h2 className="text-5xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4">
-                        What People Say
+                        Ce Que Disent les Gens
                     </h2>
                     <p className="text-lg text-gray-800 dark:text-white max-w-2xl mx-auto">
-                        Voices from clients, collaborators, and friends who have experienced my work.
+                        Témoignages de clients, collaborateurs et amis qui ont expérimenté mon travail.
                     </p>
                 </div>
 
@@ -201,16 +201,16 @@ const Testimonials = () => {
                     <div className="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700">
                         <h3 className="text-xl font-semibold text-gray-800 dark:text-white flex items-center gap-2">
                             <i className="bx bx-comment-detail text-2xl" />
-                            Testimonials
+                            Témoignages
                         </h3>
 
                         <button
                             onClick={() => setIsModalOpen(true)}
                             className="px-6 py-2 bg-gray-800 ml-3 text-white dark:bg-white dark:text-gray-800 rounded-lg font-medium  flex items-center gap-2 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg"
-                            aria-label="Add a new testimonial"
+                            aria-label="Ajouter un témoignage"
                         >
                             <i className="bx bx-plus text-lg" />
-                            Add Testimonial
+                            Ajouter un Témoignage
                         </button>
                     </div>
 
@@ -267,10 +267,10 @@ const Testimonials = () => {
                             <div className="text-center py-12">
                                 <i className="bx bx-message-dots text-6xl text-gray-300 dark:text-gray-600 mb-4 animate-pulse" />
                                 <p className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
-                                    No Testimonials Yet
+                                    Aucun Témoignage Pour le Moment
                                 </p>
                                 <p className="text-sm text-gray-800 dark:text-white max-w-sm mx-auto">
-                                    Be the first to share your experience and inspire others with your story!
+                                    Soyez le premier à partager votre expérience et inspirez les autres avec votre histoire !
                                 </p>
                             </div>
                         )}
@@ -286,10 +286,10 @@ const Testimonials = () => {
                             <i className="bx bx-message-dots text-xl text-white dark:text-gray-800" />
                         </div>
                         <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">
-                            Share Your Testimonial
+                            Partagez Votre Témoignage
                         </h3>
                         <p className="text-sm text-gray-800 dark:text-white">
-                            Tell us about your experience working with us
+                            Racontez-nous votre expérience de travail avec nous
                         </p>
                     </div>
 
@@ -297,7 +297,7 @@ const Testimonials = () => {
                         {/* Name Input */}
                         <div>
                             <label className="block text-sm font-medium text-gray-800 dark:text-white mb-1">
-                                Full Name
+                                Nom Complet
                             </label>
                             <div className="relative">
                                 <i className="bx bx-id-card absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -311,7 +311,7 @@ const Testimonials = () => {
                                             ? 'border-red-300 focus:border-red-500 focus:ring-red-200'
                                             : 'border-gray-200 dark:border-gray-700 focus:border-gray-800 focus:ring-gray-800'
                                     } bg-white dark:bg-gray-800 text-gray-800 dark:text-white text-sm focus:outline-none focus:ring-1 transition-colors`}
-                                    placeholder="Enter your full name"
+                                    placeholder="Entrez votre nom complet"
                                 />
                             </div>
                             {errors.name && (
@@ -353,7 +353,7 @@ const Testimonials = () => {
                         {/* Position Input */}
                         <div>
                             <label className="block text-sm font-medium text-gray-800 dark:text-white mb-1">
-                                Position
+                                Poste
                             </label>
                             <div className="relative">
                                 <i className="bx bx-briefcase absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -367,7 +367,7 @@ const Testimonials = () => {
                                             ? 'border-red-300 focus:border-red-500 focus:ring-red-200'
                                             : 'border-gray-200 dark:border-gray-700 focus:border-gray-800 focus:ring-gray-800'
                                     } bg-white dark:bg-gray-800 text-gray-800 dark:text-white text-sm focus:outline-none focus:ring-1 transition-colors`}
-                                    placeholder="CEO, Developer, Designer, etc."
+                                    placeholder="PDG, Développeur, Designer, etc."
                                 />
                             </div>
                             {errors.position && (
@@ -381,7 +381,7 @@ const Testimonials = () => {
                         {/* Content Textarea */}
                         <div>
                             <label className="block text-sm font-medium text-gray-800 dark:text-white mb-1">
-                                Testimonial
+                                Témoignage
                             </label>
                             <div className="relative">
                                 <i className="bx bx-message-detail absolute left-3 top-4 text-gray-400" />
@@ -395,7 +395,7 @@ const Testimonials = () => {
                                             ? 'border-red-300 focus:border-red-500 focus:ring-red-200'
                                             : 'border-gray-200 dark:border-gray-700 focus:border-gray-800 focus:ring-gray-800'
                                     } bg-white dark:bg-gray-800 text-gray-800 dark:text-white text-sm focus:outline-none focus:ring-1 transition-colors resize-none`}
-                                    placeholder="Share your experience..."
+                                    placeholder="Partagez votre expérience..."
                                 />
                             </div>
                             {errors.content && (
@@ -413,7 +413,7 @@ const Testimonials = () => {
                                 onClick={() => setIsModalOpen(false)}
                                 className="flex-1 px-6 py-2 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-white rounded-lg text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                             >
-                                Cancel
+                                Annuler
                             </button>
                             <button
                                 type="button"
@@ -424,12 +424,12 @@ const Testimonials = () => {
                                 {isSubmitting ? (
                                     <span className="flex items-center justify-center gap-2">
                                         <i className="bx bx-loader-alt animate-spin" />
-                                        Submitting...
+                                        Envoi en cours...
                                     </span>
                                 ) : (
                                     <span className="flex items-center justify-center gap-2">
                                         <i className="bx bx-send" />
-                                        Submit
+                                        Envoyer
                                     </span>
                                 )}
                             </button>

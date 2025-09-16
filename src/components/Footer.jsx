@@ -38,7 +38,7 @@ const Footer = () => {
         <div>
           <h4 className="flex items-center gap-2 text-lg font-semibold mb-3">
             <i className={`${footerData.socialsIcon} text-base`}></i>
-            Find Me Online
+            Trouvez-moi En Ligne
           </h4>
           <ul className="flex flex-wrap gap-3">
             {footerData.socials.map((social, index) => (
@@ -76,16 +76,16 @@ const Footer = () => {
               placeholder={footerData.formSubscription.placeholder}
               className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white"
             />
-            <Tippy content="Subscribe to my newsletter!">
+            <Tippy content="Abonnez-vous à ma newsletter !">
               <button
                 type="button"
                 onClick={() => {
                   Swal.fire({
-                    title: "Coming Soon! 📬",
-                    text: "This subscription feature isn't live yet. Stay tuned!",
+                    title: "Bientôt Disponible ! 📬",
+                    text: "Cette fonctionnalité d'abonnement n'est pas encore active. Restez connecté !",
                     icon: "info",
                     confirmButtonColor: "#1F2937",
-                    confirmButtonText: "Alright!",
+                    confirmButtonText: "D'accord !",
                   });
                 }}
                 className="px-4 py-3 bg-gray-800 shadow-lg text-white dark:bg-white dark:text-gray-800 rounded-lg font-medium flex items-center justify-center gap-2 transition-all transform hover:-translate-y-1 leading-none text-base"

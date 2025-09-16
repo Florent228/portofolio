@@ -1,20 +1,20 @@
 const contactData = {
-    title: "Contact Me",
-    subtitle: "Reach out via form, social media, or support platforms.",
+    title: "Me Contacter",
+    subtitle: "Contactez-moi via formulaire, réseaux sociaux ou plateformes de soutien.",
 
     tabs: [
         {
-            label: "Form",
+            label: "Formulaire",
             value: "form",
             icon: "bx bx-envelope",
         },
         {
-            label: "Social",
+            label: "Réseaux",
             value: "social",
             icon: "bx bx-link",
         },
         {
-            label: "Support Me",
+            label: "Me Soutenir",
             value: "support",
             icon: "bx bx-heart",
         },
@@ -25,25 +25,25 @@ const contactData = {
             label: "GitHub",
             href: "https://github.com/hizkia178",
             icon: "bx bxl-github",
-            description: "Explore my code & projects",
+            description: "Explorez mon code et mes projets",
         },
         {
             label: "LinkedIn",
             href: "https://www.linkedin.com/in/hizkia-siahaan-59b003280/",
             icon: "bx bxl-linkedin-square",
-            description: "Let’s connect professionally",
+            description: "Connectons-nous professionnellement",
         },
         {
             label: "Instagram",
             href: "#",
             icon: "bx bxl-instagram",
-            description: "My visual journal & life updates",
+            description: "Mon journal visuel et actualités de vie",
         },
         {
             label: "Twitter",
             href: "#",
             icon: "bx bxl-twitter",
-            description: "Random thoughts & dev tweets",
+            description: "Réflexions diverses et tweets dev",
         },
     ],
 
@@ -52,7 +52,7 @@ const contactData = {
             label: "QRIS",
             type: "image",
             imageSrc: "/assets/qris.jpg",
-            alt: "Scan to support via QRIS",
+            alt: "Scanner pour soutenir via QRIS",
         }
     ],
 

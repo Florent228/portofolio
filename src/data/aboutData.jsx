@@ -1,31 +1,31 @@
 const aboutData = {
-    title: "About Me",
-    subtitle: "Discover my journey, passions, and the story behind my work",
+    title: "À Propos de Moi",
+    subtitle: "Découvrez mon parcours, mes passions et l'histoire derrière mon travail",
     image: "/assets/profile.jpg",
 
     biodata: [
-        { label: "Name", value: "Hizkia Siahaan", icon: "bx bx-id-card" },
-        { label: "Date of Birth", value: "December,02-2004", icon: "bx bx-calendar" },
-        { label: "Place of Birth", value: "Medan, Indonesia", icon: "bx bx-map" },
+        { label: "Nom", value: "Hizkia Siahaan", icon: "bx bx-id-card" },
+        { label: "Date de Naissance", value: "02 Décembre 2004", icon: "bx bx-calendar" },
+        { label: "Lieu de Naissance", value: "Medan, Indonésie", icon: "bx bx-map" },
         { label: "Email", value: "siahaanhizkia548@gmail.com", icon: "bx bx-envelope" },
-        { label: "Phone", value: "+62 895 1014 4492", icon: "bx bx-phone" },
-        { label: "Education", value: "Universitas Sumatera Utara", icon: "bx bx-book" },
-        { label: "GPA", value: "3.55 / 4.00", icon: "bx bx-award" },
+        { label: "Téléphone", value: "+62 895 1014 4492", icon: "bx bx-phone" },
+        { label: "Formation", value: "Université Sumatera Utara", icon: "bx bx-book" },
+        { label: "Moyenne", value: "3.55 / 4.00", icon: "bx bx-award" },
     ],
 
     resume: {
-        label: "Download My Resume",
+        label: "Télécharger mon CV",
         href: null,
         icon: "bx bx-download",
     },
 
     aboutNarrative: {
         whoAmI: {
-            text: `I'm a frontend developer who crafts responsive, interactive, and clean UIs. With a background in Informatics Engineering, I blend design sense with technical logic.`,
+            text: `Je suis un développeur frontend qui crée des interfaces responsives, interactives et épurées. Avec une formation en génie informatique, j'allie sens du design et logique technique.`,
             icon: "bx-info-circle"
         },
         approach: {
-            text: `I focus on user-centered design, performance, and accessibility   always evolving with modern tech to deliver seamless digital experiences.`,
+            text: `Je me concentre sur le design centré utilisateur, la performance et l'accessibilité, évoluant constamment avec les technologies modernes pour offrir des expériences numériques fluides.`,
             icon: "bx-bulb"
         }
     }

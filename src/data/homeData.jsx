@@ -1,22 +1,22 @@
 const homeData = {
-  title: "Hi, I’m Hizkia Siahaan 👋",
+  title: "Salut, je suis Hizkia Siahaan 👋",
   typingTexts: [
-    "Frontend Developer",
-    "React Enthusiast",
-    "Tailwind Warrior",
-    "UI/UX Explorer",
+    "Développeur Frontend",
+    "Passionné de React",
+    "Expert Tailwind",
+    "Explorateur UI/UX",
   ],
-  description: "I build modern, responsive web apps with clean UI and smooth UX  blending design and code to create experiences that feel intuitive, fast, and delightful to use.",
+  description: "Je développe des applications web modernes et responsives avec une interface claire et une UX fluide, mêlant design et code pour créer des expériences intuitives, rapides et agréables à utiliser.",
 
   img: "/assets/profile.jpg",
   buttons: [
     {
-      label: "Explore My Project",
+      label: "Découvrir mes Projets",
       href: "#",
       type: "primary",
     },
     {
-      label: "Download My CV",
+      label: "Télécharger mon CV",
       href: "#",
       type: "secondary",
     },
@@ -47,22 +47,22 @@ const homeData = {
 
   stats: [
     {
-      label: "Experience",
-      value: "2+ Years",
+      label: "Expérience",
+      value: "2+ Années",
       icon: "bx bx-briefcase",
     },
     {
-      label: "Main Language",
+      label: "Langage Principal",
       value: "JavaScript",
       icon: "bx bxl-javascript",
     },
     {
-      label: "Total Projects",
-      value: "1 Projects",
+      label: "Total Projets",
+      value: "1 Projets",
       icon: "bx bx-code-alt",
     },
     {
-      label: "GPA",
+      label: "Moyenne",
       value: "3.55 / 4.00",
       icon: "bx bx-award",
     },
