@@ -1,64 +1,64 @@
 const homeData = {
-  title: "Salut, je suis Hizkia Siahaan 👋",
+  title: "Florent ATCHEAKOU",
   typingTexts: [
-    "Développeur Frontend",
-    "Passionné de React",
-    "Expert Tailwind",
-    "Explorateur UI/UX",
+    "Expert en Informatique & Systèmes d'Information",
+    "Développeur Full Stack",
+    "Data Analyst & Machine Learning",
+    "Intelligence Artificielle",
   ],
-  description: "Je développe des applications web modernes et responsives avec une interface claire et une UX fluide, mêlant design et code pour créer des expériences intuitives, rapides et agréables à utiliser.",
+  description: "Ingénieur en informatique, je conçois des applications web et mobiles, j’exploite les données grâce à des approches data et Machine Learning. Je conçois l’architecture des systèmes d’information alignés sur les besoins métiers.",
 
-  img: "/assets/profile.jpg",
+  img: "/assets/profile.png",
   buttons: [
     {
       label: "Découvrir mes Projets",
-      href: "#",
+      href: "#portofolio",
       type: "primary",
     },
     {
       label: "Télécharger mon CV",
-      href: "#",
+      href: "/assets/cv_FlorentAtcheakou_2025.pdf",
       type: "secondary",
     },
   ],
   floatingIcons: [
-    { icon: "bx bxl-html5", color: "#e34c26", label: "HTML" },
-    { icon: "bx bxl-css3", color: "#264de4", label: "CSS" },
-    { icon: "bx bxl-javascript", color: "#f0db4f", label: "JavaScript" },
-    { icon: "bx bxl-react", color: "#61dbfb", label: "React" },
+    { icon: "bx bxl-python", color: "#e34c26", label: "Python" },
+    { icon: "bx bxl-react", color: "#e34c26", label: "React" },
+    { icon: "bx bxl-nodejs", color: "#e34c26", label: "Node.js" },
+    { icon: "bx bxl-vuejs", color: "#264de4", label: "Vue.js" },
   ],
   socialMedia: [
     {
       platform: "GitHub",
       icon: "bx bxl-github",
-      href: "https://github.com/Hizkia178"
-    },
+        href: "https://github.com/Florent228"
+      },
     {
-      platform: "Instagram",
-      icon: "bx bxl-instagram",
-      href: "https://www.instagram.com/yourusername" 
+      platform: "LinkedIn",
+      icon: "bx bxl-linkedin-square",
+      href: "https://www.linkedin.com/in/florent-atcheakou-606b4b280/" 
     },
     {
       platform: "WhatsApp",
       icon: "bx bxl-whatsapp",
-      href: "https://wa.me/62XXXXXXXXXX" 
+      href: "https://wa.me/33636221770" 
     }
   ],
 
   stats: [
     {
-      label: "Expérience",
-      value: "2+ Années",
+      label: "d'expérience",
+      value: "+3 Années",
       icon: "bx bx-briefcase",
     },
+    // {
+    //   label: "Langage Principal",
+    //   value: "JavaScript",
+    //   icon: "bx bxl-javascript",
+    // },
     {
-      label: "Langage Principal",
-      value: "JavaScript",
-      icon: "bx bxl-javascript",
-    },
-    {
-      label: "Total Projets",
-      value: "1 Projets",
+      label: "réalisés",
+      value: "+10 Projets",
       icon: "bx bx-code-alt",
     },
     {
