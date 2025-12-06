@@ -1,6 +1,5 @@
 import aboutData from "../data/aboutData.jsx";
 import Tippy from '@tippyjs/react';
-import Swal from 'sweetalert2';
 
 
 const About = () => {
@@ -60,7 +59,7 @@ const About = () => {
                                     <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-gray-800 p-4 dark:bg-white dark:text-gray-800 shadow-lg text-white">
                                         <i className={`bx ${aboutData.aboutNarrative.approach.icon} text-xl`}></i>
                                     </div>
-                                    <h3 className="text-xl font-bold text-gray-800 dark:text-white">Mon Approche</h3>
+                                    <h3 className="text-xl font-bold text-gray-800 dark:text-white">Mon approche</h3>
                                 </div>
                                 <p className="text-gray-700 dark:text-gray-300">
                                     {aboutData.aboutNarrative.approach.text}
@@ -71,7 +70,7 @@ const About = () => {
                         {/* Personal Info Heading */}
                         <div className="flex items-center gap-2 mb-4" data-aos-delay="600" data-aos="fade-down">
                             <i className="bx bx-info-circle text-2xl text-gray-800 dark:text-white" aria-hidden="true"></i>
-                            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">Informations Personnelles</h2>
+                            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">Informations personnelles</h2>
                         </div>
 
                         {/* Biodata Grid - 2x2 Layout */}
@@ -92,24 +91,20 @@ const About = () => {
 
 
                         <Tippy content="Télécharger mon CV">
-                            <button
-                                onClick={() => {
-                                    Swal.fire({
-                                        title: "Pas Encore Disponible 😅",
-                                        text: "Mon CV est encore en cours de préparation. Veuillez revenir plus tard !",
-                                        icon: "info",
-                                        confirmButtonColor: "#1F2937",
-                                        confirmButtonText: "D'accord",
-                                    });
-                                }}
-                                className={resumeButtonClasses}
-                                aria-label="Télécharger CV"
-                                data-aos-delay="600"
-                                data-aos="fade-down"
-                            >
-                                <i className={`${aboutData.resume.icon} text-lg mr-2`} aria-hidden="true"></i>
-                                {aboutData.resume.label}
-                            </button>
+                            <span>
+                                <a
+                                    href={aboutData.resume.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={resumeButtonClasses}
+                                    aria-label="Télécharger CV"
+                                    data-aos-delay="600"
+                                    data-aos="fade-down"
+                                >
+                                    <i className={`${aboutData.resume.icon} text-lg mr-2`} aria-hidden="true"></i>
+                                    {aboutData.resume.label}
+                                </a>
+                            </span>
                         </Tippy>
                     </div>
                 </div>

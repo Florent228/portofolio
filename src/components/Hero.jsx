@@ -81,15 +81,17 @@ const Home = () => {
               <div className="flex space-x-3">
                 {homeData.socialMedia.map((social, index) => (
                   <Tippy content={social.platform} key={index} placement="top">
-                    <a
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 bg-gray-800 text-white dark:bg-white rounded-full flex items-center shadow-2xl justify-center dark:text-gray-800 hover:text-white dark:hover:bg-white dark:hover:text-gray-800 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                      aria-label={`Visit ${social.platform}`}
-                    >
-                      <i className={`${social.icon} text-lg`}></i>
-                    </a>
+                    <span>
+                      <a
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-10 h-10 bg-gray-800 text-white dark:bg-white rounded-full flex items-center shadow-2xl justify-center dark:text-gray-800 hover:text-white dark:hover:bg-white dark:hover:text-gray-800 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                        aria-label={`Visit ${social.platform}`}
+                      >
+                        <i className={`${social.icon} text-lg`}></i>
+                      </a>
+                    </span>
                   </Tippy>
                 ))}
               </div>
@@ -176,7 +178,7 @@ const Home = () => {
             <div className="relative z-10">
               <img
                 src={homeData.img}
-                alt="Hizkia Siahaan Profile"
+                alt="Florent ATCHEAKOU Profile"
                 className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 object-cover rounded-full shadow-2xl dark:shadow-gray-800 border-8 border-white dark:border-gray-800 hover:shadow-3xl hover:-translate-y-2 transition-all duration-300"
               />
             </div>
