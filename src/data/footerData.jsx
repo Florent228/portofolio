@@ -1,9 +1,9 @@
 const footerData = {
     brand: {
-        name: "Hizkia Siahaan",
+        name: "Florent ATCHEAKOU",
         icon: "bx bx-code-alt",
         description:
-            "Développeur Frontend spécialisé en UI/UX, technologies web modernes, et création d'expériences numériques fluides avec du code propre et un flux créatif.",
+            "Développeur Full Stack, Expert en Informatique & Systèmes d’Information",
     },
 
     navigationIcon: "bx bx-navigation",
@@ -27,17 +27,12 @@ const footerData = {
         {
             label: "WhatsApp",
             icon: "bx bxl-whatsapp",
-            href: "https://wa.me/62XXXXXXXXXX"
-        },
-        {
-            label: "Instagram",
-            icon: "bx bxl-instagram",
-            href: "https://www.instagram.com/username"
+            href: "https://wa.me/33636221770"
         },
         {
             label: "GitHub",
             icon: "bx bxl-github",
-            href: "https://github.com/Hizkia178"
+            href: "https://github.com/Florent228"
         }
     ],
 
@@ -51,7 +46,7 @@ const footerData = {
         buttonText: "S'abonner",
     },
 
-    copyright: "© 2025 Hizkia Siahaan. Tous droits réservés.",
+    copyright: "© 2025 Florent ATCHEAKOU. Tous droits réservés.",
 };
 
 export default footerData;

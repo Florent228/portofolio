@@ -9,72 +9,71 @@ export const portfolioData = {
             {
                 id: 1,
                 img: "/assets/project1.png",
-                title: "Le générateur de parcours universitaires",
-                subtitle: "Suivez vos finances avec clarté et contrôle.",
-                desc: "Money Tracker est une application web moderne qui aide les utilisateurs à surveiller leurs revenus et dépenses sans effort. Dotée d'une interface minimaliste, d'un basculeur de mode sombre et d'un tableau de bord intuitif, elle est conçue pour encourager la sensibilisation financière des utilisateurs quotidiens. Les données peuvent être synchronisées via Supabase ou stockées localement.",
-                demo: "#",
-                tags: ["React", "Tailwind CSS", "Supabase", "Vite"]
+                title: "Générateur de parcours d’orientation scolaire",
+                subtitle: "Recommander des parcours de formation vers un métier cible.",
+                desc: "Outil d’orientation qui génère des chemins de formation possibles à partir du profil de l’élève (bac, compétences, contraintes) et du métier visé. Utilisation de données éducatives, d’algorithmes d’alignement et de briques IA (NLP, scoring) pour proposer des parcours personnalisés et expliquer les recommandations.",                demo: "#",
+                tags: ["API REST", "NodeJs", "Tailwindcss", "Python", "NLP", "MySQl"]
             },
             {
                 id: 2,
                 img: "/assets/project2.png",
-                title: "L'explorateur de parcours universitaires",
-                subtitle: "Un chatbot qui évolue à chaque conversation.",
-                desc: "Ce chatbot est un assistant basé sur React qui apprend des entrées utilisateur et stocke les connaissances en utilisant un backend simple Express + JSON. Il est conçu pour devenir plus intelligent au fil du temps et simuler un dialogue naturel et humain. Idéal pour l'entraînement IA de base ou les assistants personnalisés.",
+                title: "Explorateur de parcours académiques – Projet ACORDA",
+                subtitle: "Aider les élèves à visualiser et comparer les formations de l’Académie de Toulouse.",
+                desc: "Application web de cartographie et de recherche permettant aux lycéens et étudiants de visualiser les offres de formation de l’Académie de Toulouse. Filtres par niveau, filière et localisation, vues détaillées par établissement et parcours d’études. Projet intégré au programme ACORDA (6 M€) pour améliorer l’orientation scolaire et l’insertion professionnelle.",
                 demo: "#",
-                tags: ["React", "Express", "Node.js", "JSON"]
+                tags: ["NodeJs", "Express", "D3js", "Tailwindcss", "MySQl"]
             },
             {
                 id: 3,
                 img: "/assets/yom.png",
                 title: "Yom la plateforme pour trouver les meilleurs prestataires dans tous les domaines.",
-                subtitle: "Votre travail mérite une belle vitrine.",
-                desc: "Un portfolio personnel élégant et responsive construit avec Vite et Tailwind CSS. Ce site présente des sections de projets catégorisées, des certificats et une pile technologique dynamique. Optimisé pour les expériences de bureau et mobiles, il reflète un branding professionnel avec un code propre.",
-                demo: "#",
-                tags: ["Vite", "React", "Tailwind CSS", "JavaScript"]
+                subtitle: "Trouvez le bon pro, au bon moment, sans perdre de temps.",
+                desc: "YOM-App est une plateforme de mise en relation  entre clients et prestataires qualifiés dans divers domaines : ingénierie, informatique, bâtiment, services et bien plus. Elle permet aux clients de trouver rapidement le bon professionnel et aux prestataires de gagner en visibilité grâce à un profil public.",
+                demo: "https://yom-app.com/",
+                tags: ["VueJs","Tailwind CSS", "API REST", "NodeJs", "React Native", "MySQL"]
             },
             {
                 id: 4,
-                img: "/assets/yom.png",
-                title: "Application de Suivi Financier",
-                subtitle: "Suivez vos finances avec clarté et contrôle.",
-                desc: "Money Tracker est une application web moderne qui aide les utilisateurs à surveiller leurs revenus et dépenses sans effort. Dotée d'une interface minimaliste, d'un basculeur de mode sombre et d'un tableau de bord intuitif, elle est conçue pour encourager la sensibilisation financière des utilisateurs quotidiens. Les données peuvent être synchronisées via Supabase ou stockées localement.",
+                img: "/assets/gestions.png",
+                title: "Logiciel de gestion des demandes de services",
+                subtitle: "Gère efficacement les demandes de services pour l'agglomération de Bourg-en-Bresse.",
+                desc: "Ce logiciel de gestion gère les demandes et projets du service SIG, optimisant le suivi et le traitement des requêtes pour l'agglomération de Bourg-en-Bresse.",
                 demo: "#",
-                tags: ["React", "Tailwind CSS", "Supabase", "Vite"]
+                tags: ["PHP", "JavaScript", "Tailwind CSS", "PostgreSQL"]
             },
             {
                 id: 5,
-                img: "/assets/project.png",
-                title: "Assistant Chatbot",
-                subtitle: "Un chatbot qui évolue à chaque conversation.",
-                desc: "Ce chatbot est un assistant basé sur React qui apprend des entrées utilisateur et stocke les connaissances en utilisant un backend simple Express + JSON. Il est conçu pour devenir plus intelligent au fil du temps et simuler un dialogue naturel et humain. Idéal pour l'entraînement IA de base ou les assistants personnalisés.",
-                demo: "#",
-                tags: ["React", "Express", "Node.js", "JSON"]
+                img: "/assets/plan.png",
+                title: "Plateforme web de géolocalisation interactive",
+                subtitle: "Système d'information géographique pour l'agglomération de Bourg-en-Bresse.",
+                desc: "Plateforme web de visualisation cartographique interactive permettant de rechercher, filtrer et localiser des équipements sur une carte dynamique, incluant géolocalisation, affichage contextuel et calcul d’itinéraire.",
+                demo: "https://plan-inter-actif.vercel.app",
+                tags: ["PHP", "JavaScript", "Leaflet Js", "Tailwind CSS", "PostgreSQL"]
             },
             {
                 id: 6,
-                img: "/assets/project.png",
-                title: "Site Web Portfolio Personnel",
-                subtitle: "Votre travail mérite une belle vitrine.",
-                desc: "Un portfolio personnel élégant et responsive construit avec Vite et Tailwind CSS. Ce site présente des sections de projets catégorisées, des certificats et une pile technologique dynamique. Optimisé pour les expériences de bureau et mobiles, il reflète un branding professionnel avec un code propre.",
-                demo: "#",
-                tags: ["Vite", "React", "Tailwind CSS", "JavaScript"]
+                img: "/assets/formaconfiance.jpg",
+                title: "Plateforme de Sensibilisation",
+                subtitle: "Comprendre les risques pour mieux se protéger.",
+                desc: "Une plateforme éducative interactive dédiée à la sensibilisation aux dangers des réseaux sociaux. Elle propose des quiz pédagogiques, des guides pratiques et des articles explicatifs pour aider les utilisateurs à identifier les risques, adopter de bons comportements numériques et développer un esprit critique. Pensée pour être accessible et engageante",
+                demo: "https://formaconfiance.vercel.app/",
+                tags: ["VueJs", "Tailwind CSS", "JavaScript"]
             }
         ],
 
         certificates: [
             {
                 id: 1,
-                img: "/assets/cert.jpg"
+                img: "/assets/epsi.png"
             },
             {
                 id: 2,
-                img: "/assets/cert.jpg",
+                img: "/assets/lpsig.jpg",
             },
-            {
-                id: 3,
-                img: "/assets/cert.jpg",
-            }
+            // {
+            //     id: 3,
+            //     img: "/assets/cert.jpg",
+            // }
         ],
 
         techStacks: [

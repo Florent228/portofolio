@@ -19,7 +19,7 @@ const Contact = () => {
         <div className="flex justify-center mb-8 gap-4 flex-wrap" data-aos-delay="600" data-aos="fade-down">
           {[
             { value: "contact", label: "Me Contacter", icon: "bx bx-envelope" },
-            { value: "support", label: "Me Soutenir", icon: "bx bx-heart" },
+            // { value: "support", label: "Me Soutenir", icon: "bx bx-heart" },
           ].map((tab) => (
             <button
               key={tab.value}

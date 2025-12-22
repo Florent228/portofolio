@@ -13,38 +13,27 @@ const contactData = {
             value: "social",
             icon: "bx bx-link",
         },
-        {
-            label: "Me Soutenir",
-            value: "support",
-            icon: "bx bx-heart",
-        },
+        // {
+        //     label: "Me Soutenir",
+        //     value: "support",
+        //     icon: "bx bx-heart",
+        // },
     ],
 
     socials: [
         {
             label: "GitHub",
-            href: "https://github.com/hizkia178",
+            href: "https://github.com/Florent228",
             icon: "bx bxl-github",
             description: "Explorez mon code et mes projets",
         },
         {
             label: "LinkedIn",
-            href: "https://www.linkedin.com/in/hizkia-siahaan-59b003280/",
+            href: "https://www.linkedin.com/in/florent-atcheakou/",
             icon: "bx bxl-linkedin-square",
             description: "Connectons-nous professionnellement",
         },
-        {
-            label: "Instagram",
-            href: "#",
-            icon: "bx bxl-instagram",
-            description: "Mon journal visuel et actualités de vie",
-        },
-        {
-            label: "Twitter",
-            href: "#",
-            icon: "bx bxl-twitter",
-            description: "Réflexions diverses et tweets dev",
-        },
+        
     ],
 
     supportPlatforms: [

@@ -145,7 +145,7 @@ const Portfolio = () => {
                 >
                     {[
                         { value: "projects", label: "Projets", icon: "bx bx-briefcase" },
-                        { value: "certificates", label: "Certificats", icon: "bx bx-award" },
+                        // { value: "certificates", label: "Certificats", icon: "bx bx-award" },
                         { value: "tech", label: "Technologies", icon: "bx bx-code-alt" },
                     ].map((tab) => (
                         <button
