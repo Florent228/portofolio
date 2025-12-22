@@ -188,7 +188,7 @@ const Testimonials = () => {
                 {/* Header */}
                 <div className="text-center mb-16" data-aos-delay="600" data-aos="fade-down">
                     <h2 className="text-5xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4">
-                        Ce Que Disent les Gens
+                        Ce que disent les gens
                     </h2>
                     <p className="text-lg text-gray-800 dark:text-white max-w-2xl mx-auto">
                         Témoignages de clients, collaborateurs et amis qui ont expérimenté mon travail.
