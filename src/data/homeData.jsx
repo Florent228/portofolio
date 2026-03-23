@@ -8,7 +8,7 @@ const homeData = {
   ],
   description: "Ingénieur en informatique, je conçois des applications web et mobiles, j’exploite les données grâce à des approches data et Machine Learning. Je conçois l’architecture des systèmes d’information alignés sur les besoins métiers.",
 
-  img: "/assets/profile.png",
+  img: "/assets/profile.png?v=2",
   buttons: [
     {
       label: "Découvrir mes Projets",

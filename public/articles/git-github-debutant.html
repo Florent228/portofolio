@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maîtriser Git & GitHub — Guide pour débutants</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1814;
+    --ink-soft: #4a4742;
+    --ink-muted: #8a8780;
+    --page: #faf9f5;
+    --surface: #f2f0ea;
+    --rule: #e0ddd4;
+    --accent: #c75c2e;
+    --accent-soft: #f5ede7;
+    --code-bg: #1e1c18;
+    --code-text: #e8e0cc;
+    --green: #2d6a4f;
+    --green-soft: #e6f4ec;
+    --blue: #1d4e7a;
+    --blue-soft: #e8f2fb;
+    --amber: #92510a;
+    --amber-soft: #fdf3e3;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    background: var(--page);
+    color: var(--ink);
+    line-height: 1.75;
+    font-size: 17px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: var(--page);
+    padding: 80px 24px 72px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.02) 40px,
+      rgba(255,255,255,0.02) 41px
+    );
+  }
+  .hero-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(38px, 7vw, 72px);
+    line-height: 1.1;
+    font-weight: 400;
+    max-width: 760px;
+    margin: 0 auto 28px;
+    position: relative;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: #d4845a;
+  }
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(250,249,245,0.6);
+    max-width: 520px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 40px;
+    position: relative;
+  }
+  .hero-meta span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .08em;
+    color: rgba(250,249,245,0.4);
+  }
+
+  /* ── LAYOUT ── */
+  .article {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 64px 24px 96px;
+  }
+
+  /* ── TOC ── */
+  .toc {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    padding: 28px 32px;
+    margin-bottom: 64px;
+    border-radius: 0 8px 8px 0;
+  }
+  .toc-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 16px;
+  }
+  .toc ol { padding-left: 20px; }
+  .toc li {
+    margin-bottom: 8px;
+    font-size: 15px;
+  }
+  .toc a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .toc a:hover { color: var(--accent); }
+
+  /* ── TYPOGRAPHY ── */
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 34px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-top: 72px;
+    margin-bottom: 24px;
+    color: var(--ink);
+  }
+  h2 .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 6px;
+    letter-spacing: .06em;
+  }
+  h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+  p { margin-bottom: 20px; }
+  p strong { font-weight: 600; color: var(--ink); }
+
+  /* ── SECTION RULE ── */
+  .section-rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 64px 0;
+  }
+
+  /* ── HIGHLIGHT BOXES ── */
+  .box {
+    padding: 24px 28px;
+    border-radius: 8px;
+    margin: 32px 0;
+    font-size: 15.5px;
+  }
+  .box-why { background: var(--accent-soft); border-left: 3px solid var(--accent); }
+  .box-tip { background: var(--green-soft); border-left: 3px solid var(--green); }
+  .box-info { background: var(--blue-soft); border-left: 3px solid var(--blue); }
+  .box-warn { background: var(--amber-soft); border-left: 3px solid var(--amber); }
+  .box-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .box-why .box-label { color: var(--accent); }
+  .box-tip .box-label { color: var(--green); }
+  .box-info .box-label { color: var(--blue); }
+  .box-warn .box-label { color: var(--amber); }
+
+  /* ── CODE ── */
+  .code-block {
+    background: var(--code-bg);
+    color: var(--code-text);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 28px 0;
+    overflow-x: auto;
+    position: relative;
+  }
+  .code-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: rgba(232,224,204,0.35);
+    margin-bottom: 14px;
+  }
+  .code-block code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13.5px;
+    line-height: 1.9;
+    white-space: pre;
+    display: block;
+  }
+  .code-block .comment { color: #5a7a5a; }
+  .code-block .cmd { color: #87c3e8; }
+  .code-block .flag { color: #d4845a; }
+  .code-block .str { color: #a8d8a0; }
+  .code-block .out { color: rgba(232,224,204,0.5); }
+
+  /* ── COMPARISON TABLE ── */
+  .compare {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 32px 0;
+    font-size: 15px;
+  }
+  .compare th {
+    background: var(--ink);
+    color: var(--page);
+    padding: 12px 18px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: .04em;
+  }
+  .compare th:first-child { border-radius: 8px 0 0 0; }
+  .compare th:last-child { border-radius: 0 8px 0 0; }
+  .compare td {
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  .compare tr:last-child td { border-bottom: none; }
+  .compare tr:nth-child(even) td { background: var(--surface); }
+  .compare .check { color: var(--green); font-weight: 600; }
+
+  /* ── WORKFLOW VISUAL ── */
+  .workflow {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    margin: 36px 0;
+    overflow-x: auto;
+  }
+  .workflow-step {
+    flex: 1;
+    min-width: 130px;
+    text-align: center;
+    position: relative;
+  }
+  .workflow-step::after {
+    content: '→';
+    position: absolute;
+    right: -12px;
+    top: 22px;
+    color: var(--ink-muted);
+    font-size: 18px;
+  }
+  .workflow-step:last-child::after { display: none; }
+  .step-bubble {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 0 auto 10px;
+  }
+  .step-label { font-size: 13px; color: var(--ink-soft); line-height: 1.4; }
+
+  /* ── CHEAT SHEET ── */
+  .cheat {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .cheat-item {
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .cheat-cmd {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .cheat-desc { font-size: 13px; color: var(--ink-soft); }
+
+  /* ── PULLQUOTE ── */
+  .pullquote {
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding: 28px 0 24px;
+    margin: 48px 0;
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .pullquote em { font-style: italic; color: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--rule);
+    padding: 40px 24px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--ink-muted);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: .05em;
+  }
+
+  @media (max-width: 600px) {
+    .cheat { grid-template-columns: 1fr; }
+    .workflow { flex-direction: column; gap: 20px; }
+    .workflow-step::after { display: none; }
+    h2 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <p class="hero-label">// Guide complet · Débutants</p>
+  <h1>Maîtriser <em>Git</em> &amp; GitHub<br>dès le premier jour</h1>
+  <p class="hero-sub">Tout ce qu'un développeur junior doit savoir pour travailler en équipe et ne plus jamais perdre du code.</p>
+  <div class="hero-meta">
+    <span>~20 min de lecture</span>
+    <span>·</span>
+    <span>Niveau zéro requis</span>
+    <span>·</span>
+    <span>Exemples pratiques</span>
+  </div>
+</header>
+
+<!-- ARTICLE -->
+<main class="article">
+
+  <!-- TOC -->
+  <nav class="toc">
+    <p class="toc-title">Sommaire</p>
+    <ol>
+      <li><a href="#pourquoi">Pourquoi Git et GitHub sont incontournables</a></li>
+      <li><a href="#concepts">Les concepts fondamentaux (sans jargon)</a></li>
+      <li><a href="#installation">Installation et configuration</a></li>
+      <li><a href="#premier-repo">Votre premier dépôt en 10 minutes</a></li>
+      <li><a href="#branches">Travailler avec les branches</a></li>
+      <li><a href="#collaboration">Collaborer sur GitHub</a></li>
+      <li><a href="#cheatsheet">Mémo des commandes essentielles</a></li>
+      <li><a href="#erreurs">Les erreurs fréquentes (et comment s'en sortir)</a></li>
+    </ol>
+  </nav>
+
+  <!-- 1. POURQUOI -->
+  <section id="pourquoi">
+    <h2><span class="num">01 —</span>Pourquoi Git et GitHub sont incontournables</h2>
+
+    <p>Imaginez que vous travaillez sur un document important. Vous le modifiez, vous le modifiez encore, et un jour vous réalisez que vous avez tout cassé. Comment revenir en arrière ? Si votre seule sauvegarde est <em>document_final_v3_VRAIMENT_FINAL.docx</em>, vous avez un problème.</p>
+
+    <p><strong>Git résout exactement ça</strong>, mais pour du code. C'est un système de contrôle de version : il enregistre chaque modification de votre projet, qui l'a faite, quand, et pourquoi. Vous pouvez voyager dans le temps, comparer des versions, et revenir à n'importe quel état passé.</p>
+
+    <div class="box box-why">
+      <p class="box-label">Pourquoi c'est critique</p>
+      <p>En 2024, <strong>plus de 100 millions de développeurs</strong> utilisent GitHub. La quasi-totalité des entreprises technologiques exigent Git comme compétence de base. Ce n'est pas optionnel : c'est le standard universel du développement logiciel.</p>
+    </div>
+
+    <table class="compare">
+      <thead>
+        <tr>
+          <th>Sans Git</th>
+          <th>Avec Git</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sauvegarder manuellement des copies (<em>v1</em>, <em>v2</em>, <em>final</em>…)</td>
+          <td class="check">✓ Historique complet et automatique de chaque modification</td>
+        </tr>
+        <tr>
+          <td>Impossible de travailler à plusieurs sans écraser le travail des autres</td>
+          <td class="check">✓ Collaboration simultanée sur le même projet, sans conflits</td>
+        </tr>
+        <tr>
+          <td>En cas de bug, trouver la cause prend des heures</td>
+          <td class="check">✓ Identifier en quelques secondes quel commit a introduit le bug</td>
+        </tr>
+        <tr>
+          <td>Tester une nouvelle fonctionnalité = risquer de tout casser</td>
+          <td class="check">✓ Les branches isolent les expériences du code stable</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Et <strong>GitHub</strong>, c'est quoi alors ? C'est une plateforme en ligne qui héberge vos dépôts Git. Git est l'outil local sur votre machine. GitHub est le cloud où vous synchronisez, partagez et collaborez. Ce sont deux choses distinctes — Git peut s'utiliser sans GitHub, mais le combo est aujourd'hui le standard.</p>
+  </section>
+
+  <hr class="section-rule">
+
+  <!-- 2. CONCEPTS -->
+  <section id="concepts">
+    <h2><span class="num">02 —</span>Les concepts fondamentaux (sans jargon)</h2>
+
+    <p>Avant de taper la moindre commande, il faut comprendre quelques notions. Ne vous inquiétez pas : c'est plus simple que ça n'en a l'air.</p>
+
+    <h3>Le dépôt (repository ou "repo")</h3>
+    <p>C'est le dossier de votre projet, augmenté d'un sous-dossier caché <code>.git/</code> qui contient tout l'historique. Un repo peut être <strong>local</strong> (sur votre machine) ou <strong>distant</strong> (sur GitHub).</p>
+
+    <h3>Le commit</h3>
+    <p>Un commit est une <strong>photo instantanée</strong> de votre projet à un moment donné. Chaque commit a un message qui explique ce qui a changé, un auteur, et une date. L'ensemble des commits forme une ligne du temps que vous pouvez parcourir à tout moment.</p>
+
+    <div class="box box-tip">
+      <p class="box-label">💡 Bonne pratique</p>
+      <p>Un bon message de commit répond à : <em>"Si appliqué, ce commit va…"</em> Par exemple : <strong>"Ajoute la validation du formulaire de connexion"</strong> plutôt que <em>"modifs"</em> ou <em>"fix"</em>.</p>
+    </div>
+
+    <h3>La branche (branch)</h3>
+    <p>Imaginez l'historique de votre projet comme une rivière. Une branche est un affluent : vous pouvez y travailler de façon isolée, puis fusionner avec la rivière principale (<em>main</em>) quand c'est prêt. La branche <code>main</code> (ou <code>master</code>) est la version stable de votre projet.</p>
+
+    <h3>Le cycle de vie d'un fichier</h3>
+
+    <div class="workflow">
+      <div class="workflow-step">
+        <div class="step-bubble" style="background:#f2f0ea;border:1.5px solid #e0ddd4;color:#4a4742">WD</div>
+        <div class="step-label">Zone de travail<br><em>Working Directory</em></div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-bubble" style="background:#f5ede7;border:1.5px solid #d4845a;color:#c75c2e">SA</div>
+        <div class="step-label">Zone de transit<br><em>Staging Area</em></div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-bubble" style="background:#1e1c18;color:#87c3e8;border:1.5px solid #2a2820">GIT</div>
+        <div class="step-label">Dépôt local<br><em>Local repo</em></div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-bubble" style="background:#e6f4ec;border:1.5px solid #2d6a4f;color:#2d6a4f">GH</div>
+        <div class="step-label">GitHub<br><em>Remote repo</em></div>
+      </div>
+    </div>
+
+    <p>Vous modifiez vos fichiers dans le <strong>Working Directory</strong>. Vous choisissez quels changements inclure dans le prochain commit avec <code>git add</code> (Staging Area). Vous validez le commit avec <code>git commit</code>. Vous envoyez vers GitHub avec <code>git push</code>.</p>
+  </section>
+
+  <hr class="section-rule">
+
+  <!-- 3. INSTALLATION -->
+  <section id="installation">
+    <h2><span class="num">03 —</span>Installation et configuration</h2>
+
+    <h3>Installer Git</h3>
+    <p>Git est disponible sur tous les systèmes d'exploitation. La méthode la plus simple selon votre OS :</p>
+
+    <div class="code-block">
+      <p class="code-label">// macOS</p>
+      <code><span class="comment"># Via Homebrew (recommandé)</span>
+<span class="cmd">brew</span> install git
+
+<span class="comment"># Ou téléchargez depuis : https://git-scm.com/download/mac</span></code>
+    </div>
+
+    <div class="code-block">
+      <p class="code-label">// Windows</p>
+      <code><span class="comment"># Téléchargez Git for Windows : https://git-scm.com/download/win</span>
+<span class="comment"># Ou via winget :</span>
+<span class="cmd">winget</span> install --id Git.Git <span class="flag">-e</span> <span class="flag">--source</span> winget</code>
+    </div>
+
+    <div class="code-block">
+      <p class="code-label">// Linux (Ubuntu/Debian)</p>
+      <code><span class="cmd">sudo</span> apt update && <span class="cmd">sudo</span> apt install git</code>
+    </div>
+
+    <h3>Configuration initiale (obligatoire)</h3>
+    <p>Après l'installation, identifiez-vous. Git a besoin de savoir qui fait les commits :</p>
+
+    <div class="code-block">
+      <p class="code-label">// Terminal — Configuration globale</p>
+      <code><span class="cmd">git</span> config <span class="flag">--global</span> user.name <span class="str">"Votre Nom"</span>
+<span class="cmd">git</span> config <span class="flag">--global</span> user.email <span class="str">"votre@email.com"</span>
+
+<span class="comment"># Vérifier la configuration</span>
+<span class="cmd">git</span> config <span class="flag">--list</span></code>
+    </div>
+
+    <div class="box box-info">
+      <p class="box-label">ℹ️ Note</p>
+      <p>Utilisez la même adresse e-mail que votre compte GitHub. C'est ce qui permet d'associer vos commits à votre profil sur la plateforme.</p>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <!-- 4. PREMIER REPO -->
+  <section id="premier-repo">
+    <h2><span class="num">04 —</span>Votre premier dépôt en 10 minutes</h2>
+
+    <p>Passons à la pratique. Voici comment créer un projet, enregistrer des modifications et pousser sur GitHub, étape par étape.</p>
+
+    <h3>Étape 1 — Créer un dépôt local</h3>
+    <div class="code-block">
+      <p class="code-label">// Terminal</p>
+      <code><span class="comment"># Créer un dossier et l'initialiser comme dépôt Git</span>
+<span class="cmd">mkdir</span> mon-premier-projet
+<span class="cmd">cd</span> mon-premier-projet
+<span class="cmd">git</span> init
+
+<span class="out">Initialized empty Git repository in /mon-premier-projet/.git/</span></code>
+    </div>
+
+    <h3>Étape 2 — Créer un fichier et faire un commit</h3>
+    <div class="code-block">
+      <p class="code-label">// Terminal</p>
+      <code><span class="comment"># Créer un fichier</span>
+<span class="cmd">echo</span> <span class="str">"# Mon Premier Projet"</span> > README.md
+
+<span class="comment"># Voir l'état du dépôt</span>
+<span class="cmd">git</span> status
+<span class="out">On branch main
+Untracked files: README.md</span>
+
+<span class="comment"># Ajouter le fichier au staging</span>
+<span class="cmd">git</span> add README.md
+
+<span class="comment"># Créer le commit</span>
+<span class="cmd">git</span> commit <span class="flag">-m</span> <span class="str">"Ajoute le fichier README initial"</span>
+<span class="out">[main (root-commit) a3f82c1] Ajoute le fichier README initial</span></code>
+    </div>
+
+    <h3>Étape 3 — Connecter à GitHub et pousser</h3>
+    <p>Sur GitHub, créez un nouveau dépôt (bouton <strong>New repository</strong>), ne cochez rien (ni README ni .gitignore), et copiez l'URL fournie.</p>
+
+    <div class="code-block">
+      <p class="code-label">// Terminal — Connecter et envoyer</p>
+      <code><span class="comment"># Ajouter GitHub comme dépôt distant</span>
+<span class="cmd">git</span> remote add origin https://github.com/votreuser/mon-projet.git
+
+<span class="comment"># Envoyer (pousser) votre code sur GitHub</span>
+<span class="cmd">git</span> push <span class="flag">-u</span> origin main
+
+<span class="out">Branch 'main' set up to track remote branch 'main' from 'origin'.
+Everything up-to-date</span></code>
+    </div>
+
+    <div class="box box-tip">
+      <p class="box-label">✅ Félicitations</p>
+      <p>Votre code est maintenant sur GitHub. Refreshissez la page GitHub — vous verrez votre README affiché. Après cette première configuration, un simple <code>git push</code> suffit pour envoyer vos modifications.</p>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <!-- 5. BRANCHES -->
+  <section id="branches">
+    <h2><span class="num">05 —</span>Travailler avec les branches</h2>
+
+    <div class="pullquote">
+      Les branches sont l'une des fonctionnalités les plus puissantes de Git. Elles permettent de <em>tester, expérimenter, casser</em> des choses — sans jamais mettre en danger le code qui fonctionne.
+    </div>
+
+    <p>La règle d'or : <strong>ne jamais travailler directement sur <code>main</code></strong>. Créez toujours une branche pour chaque fonctionnalité ou correction.</p>
+
+    <div class="code-block">
+      <p class="code-label">// Terminal — Cycle de vie d'une branche</p>
+      <code><span class="comment"># Créer et basculer sur une nouvelle branche</span>
+<span class="cmd">git</span> switch <span class="flag">-c</span> feature/ajout-formulaire
+
+<span class="comment"># Travailler, modifier des fichiers, puis committer normalement</span>
+<span class="cmd">git</span> add .
+<span class="cmd">git</span> commit <span class="flag">-m</span> <span class="str">"Ajoute le formulaire de contact"</span>
+
+<span class="comment"># Revenir sur main et fusionner votre branche</span>
+<span class="cmd">git</span> switch main
+<span class="cmd">git</span> merge feature/ajout-formulaire
+
+<span class="comment"># Supprimer la branche une fois fusionnée (bon ménage)</span>
+<span class="cmd">git</span> branch <span class="flag">-d</span> feature/ajout-formulaire</code>
+    </div>
+
+    <div class="box box-warn">
+      <p class="box-label">⚠️ Les conflits de fusion</p>
+      <p>Si deux personnes modifient la même ligne d'un fichier, Git crée un <strong>conflit</strong>. Ne paniquez pas : Git marque les zones conflictuelles dans le fichier, vous choisissez quelle version garder, vous commitez. C'est une compétence qui s'apprend en pratiquant.</p>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <!-- 6. COLLABORATION -->
+  <section id="collaboration">
+    <h2><span class="num">06 —</span>Collaborer sur GitHub</h2>
+
+    <h3>Le fork</h3>
+    <p>Un fork est une copie d'un dépôt appartenant à quelqu'un d'autre dans votre propre compte GitHub. C'est la base de la contribution open source : vous forkez, vous modifiez, vous proposez vos changements.</p>
+
+    <h3>La Pull Request (PR)</h3>
+    <p>Une Pull Request est une <strong>proposition de fusion</strong>. Vous dites à l'équipe : "J'ai ce code sur ma branche, est-ce que vous voulez bien l'intégrer dans <code>main</code> ?" C'est là que la revue de code (code review) a lieu, où les collègues commentent, suggèrent des améliorations, et approuvent.</p>
+
+    <div class="box box-info">
+      <p class="box-label">ℹ️ Workflow typique en équipe</p>
+      <p><strong>1.</strong> Tirer les dernières modifications : <code>git pull</code><br>
+      <strong>2.</strong> Créer une branche : <code>git switch -c feature/ma-feature</code><br>
+      <strong>3.</strong> Coder, committer régulièrement<br>
+      <strong>4.</strong> Pousser la branche : <code>git push origin feature/ma-feature</code><br>
+      <strong>5.</strong> Ouvrir une Pull Request sur GitHub<br>
+      <strong>6.</strong> Faire la revue de code, corriger si besoin<br>
+      <strong>7.</strong> Fusion (merge) dans <code>main</code></p>
+    </div>
+
+    <h3>Récupérer les changements des collègues</h3>
+    <div class="code-block">
+      <p class="code-label">// Terminal — Synchronisation</p>
+      <code><span class="comment"># Récupérer ET fusionner les changements distants</span>
+<span class="cmd">git</span> pull
+
+<span class="comment"># Récupérer SANS fusionner (pour voir d'abord)</span>
+<span class="cmd">git</span> fetch
+
+<span class="comment"># Cloner un dépôt existant (première fois)</span>
+<span class="cmd">git</span> clone https://github.com/user/projet.git</code>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <!-- 7. CHEAT SHEET -->
+  <section id="cheatsheet">
+    <h2><span class="num">07 —</span>Mémo des commandes essentielles</h2>
+    <p>Voici les commandes que vous utiliserez chaque jour. Gardez cette page en marque-page.</p>
+
+    <div class="cheat">
+      <div class="cheat-item">
+        <p class="cheat-cmd">git init</p>
+        <p class="cheat-desc">Initialise un nouveau dépôt Git dans le dossier courant</p>
+      </div>
+      <div class="cheat-item">
+        <p class="cheat-cmd">git clone &lt;url&gt;</p>
+        <p class="cheat-desc">Copie un dépôt distant sur votre machine</p>
+      </div>
+      <div class="cheat-item">
+        <p class="cheat-cmd">git status</p>
+        <p class="cheat-desc">Affiche l'état actuel des fichiers (modifiés, en staging, etc.)</p>
+      </div>
+      <div class="cheat-item">
+        <p class="cheat-cmd">git add .</p>
+        <p class="cheat-desc">Ajoute tous les fichiers modifiés au staging</p>
+      </div>
+      <div class="cheat-item">
+        <p class="cheat-cmd">git commit -m "msg"</p>
+        <p class="cheat-desc">Enregistre les changements en staging avec un message</p>
+      </div>
+      <div class="cheat-item">
+        <p class="cheat-cmd">git push</p>
+        <p class="cheat-desc">Envoie les commits locaux vers GitHub</p>
+      </div>
+      <div class="cheat-item">
+        <p class="cheat-cmd">git pull</p>
+        <p class="cheat-desc">Récupère et fusionne les changements distants</p>
+      </div>
+      <div class="cheat-item">
+        <p class="cheat-cmd">git log --oneline</p>
+        <p class="cheat-desc">Affiche l'historique des commits en résumé</p>
+      </div>
+      <div class="cheat-item">
+        <p class="cheat-cmd">git switch -c &lt;nom&gt;</p>
+        <p class="cheat-desc">Crée et bascule sur une nouvelle branche</p>
+      </div>
+      <div class="cheat-item">
+        <p class="cheat-cmd">git merge &lt;branche&gt;</p>
+        <p class="cheat-desc">Fusionne une branche dans la branche courante</p>
+      </div>
+      <div class="cheat-item">
+        <p class="cheat-cmd">git diff</p>
+        <p class="cheat-desc">Montre les modifications non encore commitées</p>
+      </div>
+      <div class="cheat-item">
+        <p class="cheat-cmd">git stash</p>
+        <p class="cheat-desc">Met de côté les modifications en cours sans committer</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <!-- 8. ERREURS COURANTES -->
+  <section id="erreurs">
+    <h2><span class="num">08 —</span>Les erreurs fréquentes (et comment s'en sortir)</h2>
+
+    <h3>"J'ai commité sur main par erreur"</h3>
+    <div class="code-block">
+      <p class="code-label">// Solution</p>
+      <code><span class="comment"># Annuler le dernier commit (garde les modifications)</span>
+<span class="cmd">git</span> reset <span class="flag">--soft</span> HEAD~1
+
+<span class="comment"># Puis créer votre branche et recommitter</span>
+<span class="cmd">git</span> switch <span class="flag">-c</span> feature/ma-branche
+<span class="cmd">git</span> commit <span class="flag">-m</span> <span class="str">"Mon vrai message"</span></code>
+    </div>
+
+    <h3>"J'ai écrit un mauvais message de commit"</h3>
+    <div class="code-block">
+      <p class="code-label">// Solution (uniquement si pas encore poussé)</p>
+      <code><span class="cmd">git</span> commit <span class="flag">--amend</span> <span class="flag">-m</span> <span class="str">"Le bon message corrigé"</span></code>
+    </div>
+
+    <h3>"Je veux ignorer certains fichiers"</h3>
+    <p>Créez un fichier <code>.gitignore</code> à la racine du projet et listez les fichiers/dossiers à exclure :</p>
+    <div class="code-block">
+      <p class="code-label">// .gitignore</p>
+      <code><span class="comment"># Dépendances Node.js</span>
+node_modules/
+
+<span class="comment"># Variables d'environnement (ne JAMAIS commiter !)</span>
+.env
+.env.local
+
+<span class="comment"># Fichiers système</span>
+.DS_Store
+Thumbs.db
+
+<span class="comment"># Builds</span>
+dist/
+build/</code>
+    </div>
+
+    <div class="box box-warn">
+      <p class="box-label">⚠️ Règle absolue</p>
+      <p>N'envoyez <strong>jamais</strong> de mots de passe, clés API ou fichiers <code>.env</code> sur GitHub — même sur un dépôt privé. Utilisez toujours <code>.gitignore</code> et des services comme GitHub Secrets pour les données sensibles.</p>
+    </div>
+
+    <h3>La suite de votre apprentissage</h3>
+    <p>Une fois ces bases maîtrisées, explorez dans cet ordre : le <strong>rebase interactif</strong> pour nettoyer l'historique, les <strong>GitHub Actions</strong> pour automatiser vos tests et déploiements, les <strong>tags et releases</strong> pour versionner votre logiciel, et les stratégies de branches comme <strong>Git Flow</strong> ou <strong>trunk-based development</strong>.</p>
+
+    <div class="box box-tip">
+      <p class="box-label">🚀 La clé : pratiquer tous les jours</p>
+      <p>La meilleure façon d'apprendre Git, c'est de l'utiliser sur de vrais projets. Créez des repos pour vos exercices, contribuez à de l'open source sur GitHub, et consultez <code>git help &lt;commande&gt;</code> sans hésiter. En deux semaines d'usage quotidien, tout deviendra instinctif.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Guide Git &amp; GitHub pour débutants · Rédigé avec ❤️ pour la communauté francophone</p>
+  <p style="margin-top:8px;opacity:.6">git commit -m "Votre voyage commence ici"</p>
+</footer>
+
+</body>
+</html>
