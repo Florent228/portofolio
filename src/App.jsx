@@ -6,6 +6,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Contact from './components/Contact';
 import Testimonials from './components/Testimonial';
 import Portfolio from './components/Portofolio';
+import Articles from './components/Articles';
 function App() {
 
   return (
@@ -14,6 +15,7 @@ function App() {
       <Home />
       <About />
       <Portfolio />
+      <Articles />
       <Testimonials />
       <Contact />
       <Footer />

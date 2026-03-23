@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Débuter le développement web avec Node.js & Vue.js sur Windows</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1814;
+    --ink-soft: #4a4742;
+    --ink-muted: #8a8780;
+    --page: #faf9f5;
+    --surface: #f2f0ea;
+    --rule: #e0ddd4;
+    --accent: #2d6a4f;
+    --accent-soft: #e6f4ec;
+    --code-bg: #1e1c18;
+    --code-text: #e8e0cc;
+    --green: #2d6a4f;
+    --green-soft: #e6f4ec;
+    --blue: #1d4e7a;
+    --blue-soft: #e8f2fb;
+    --amber: #92510a;
+    --amber-soft: #fdf3e3;
+    --vue-green: #42b883;
+    --vue-green-soft: #e8f8f0;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    background: var(--page);
+    color: var(--ink);
+    line-height: 1.75;
+    font-size: 17px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #2d6a4f 0%, #1a4731 100%);
+    color: var(--page);
+    padding: 80px 24px 72px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.03) 40px,
+      rgba(255,255,255,0.03) 41px
+    );
+  }
+  .hero-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: #a8d8a0;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(38px, 7vw, 72px);
+    line-height: 1.1;
+    font-weight: 400;
+    max-width: 760px;
+    margin: 0 auto 28px;
+    position: relative;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: #a8d8a0;
+  }
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(250,249,245,0.65);
+    max-width: 540px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 40px;
+    position: relative;
+  }
+  .hero-meta span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .08em;
+    color: rgba(250,249,245,0.4);
+  }
+
+  /* ── LAYOUT ── */
+  .article {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 64px 24px 96px;
+  }
+
+  /* ── TOC ── */
+  .toc {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    padding: 28px 32px;
+    margin-bottom: 64px;
+    border-radius: 0 8px 8px 0;
+  }
+  .toc-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 16px;
+  }
+  .toc ol { padding-left: 20px; }
+  .toc li {
+    margin-bottom: 8px;
+    font-size: 15px;
+  }
+  .toc a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .toc a:hover { color: var(--accent); }
+
+  /* ── TYPOGRAPHY ── */
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 34px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-top: 72px;
+    margin-bottom: 24px;
+    color: var(--ink);
+  }
+  h2 .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 6px;
+    letter-spacing: .06em;
+  }
+  h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 36px;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+  p { margin-bottom: 20px; }
+  p strong { font-weight: 600; color: var(--ink); }
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+  }
+  p code, li code, td code {
+    background: var(--surface);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--accent);
+  }
+
+  /* ── SECTION RULE ── */
+  .section-rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 64px 0;
+  }
+
+  /* ── HIGHLIGHT BOXES ── */
+  .box {
+    padding: 24px 28px;
+    border-radius: 8px;
+    margin: 32px 0;
+    font-size: 15.5px;
+  }
+  .box-tip { background: var(--green-soft); border-left: 3px solid var(--green); }
+  .box-info { background: var(--blue-soft); border-left: 3px solid var(--blue); }
+  .box-warn { background: var(--amber-soft); border-left: 3px solid var(--amber); }
+  .box-vue { background: var(--vue-green-soft); border-left: 3px solid var(--vue-green); }
+  .box-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .box-tip .box-label { color: var(--green); }
+  .box-info .box-label { color: var(--blue); }
+  .box-warn .box-label { color: var(--amber); }
+  .box-vue .box-label { color: var(--vue-green); }
+
+  /* ── CODE ── */
+  .code-block {
+    background: var(--code-bg);
+    color: var(--code-text);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 28px 0;
+    overflow-x: auto;
+    position: relative;
+  }
+  .code-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: rgba(232,224,204,0.35);
+    margin-bottom: 14px;
+  }
+  .code-block code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13.5px;
+    line-height: 1.9;
+    white-space: pre;
+    display: block;
+    background: none;
+    padding: 0;
+    color: var(--code-text);
+  }
+  .code-block .comment { color: #5a7a5a; }
+  .code-block .cmd { color: #87c3e8; }
+  .code-block .flag { color: #d4845a; }
+  .code-block .str { color: #a8d8a0; }
+  .code-block .out { color: rgba(232,224,204,0.5); }
+  .code-block .key { color: #87c3e8; }
+  .code-block .val { color: #a8d8a0; }
+  .code-block .tag { color: #d4845a; }
+  .code-block .attr { color: #87c3e8; }
+  .code-block .vue-dir { color: #c792ea; }
+
+  /* ── TABLE ── */
+  .cmd-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 32px 0;
+    font-size: 15px;
+  }
+  .cmd-table th {
+    background: var(--ink);
+    color: var(--page);
+    padding: 12px 18px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: .04em;
+  }
+  .cmd-table th:first-child { border-radius: 8px 0 0 0; }
+  .cmd-table th:last-child { border-radius: 0 8px 0 0; }
+  .cmd-table td {
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  .cmd-table tr:last-child td { border-bottom: none; }
+  .cmd-table tr:nth-child(even) td { background: var(--surface); }
+  .cmd-table td code {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* ── STRUCTURE TREE ── */
+  .tree {
+    background: var(--surface);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin: 28px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13.5px;
+    line-height: 1.9;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .tree .folder { color: var(--accent); font-weight: 500; }
+  .tree .file { color: var(--ink-soft); }
+  .tree .note { color: var(--ink-muted); font-style: italic; font-family: 'DM Sans', sans-serif; font-size: 13px; }
+
+  /* ── VS CODE DIAGRAM ── */
+  .diagram {
+    background: var(--code-bg);
+    color: var(--code-text);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 28px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  /* ── PULLQUOTE ── */
+  .pullquote {
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding: 28px 0 24px;
+    margin: 48px 0;
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .pullquote em { font-style: italic; color: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--rule);
+    padding: 40px 24px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--ink-muted);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: .05em;
+  }
+
+  /* ── LISTS ── */
+  ul, ol {
+    margin-bottom: 20px;
+    padding-left: 24px;
+  }
+  li {
+    margin-bottom: 8px;
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist {
+    list-style: none;
+    padding-left: 0;
+  }
+  .checklist li {
+    padding-left: 28px;
+    position: relative;
+  }
+  .checklist li::before {
+    content: '✅';
+    position: absolute;
+    left: 0;
+  }
+
+  @media (max-width: 600px) {
+    h2 { font-size: 28px; }
+    .hero h1 { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <p class="hero-label">// Guide complet · Débutants Windows</p>
+  <h1>Débuter avec <em>Node.js</em> &amp; <em>Vue.js</em></h1>
+  <p class="hero-sub">De zéro à ton premier projet : installation, configuration et premiers pas sur Windows, expliqués pas à pas.</p>
+  <div class="hero-meta">
+    <span>~25 min de lecture</span>
+    <span>·</span>
+    <span>Niveau zéro requis</span>
+    <span>·</span>
+    <span>Windows</span>
+  </div>
+</header>
+
+<!-- ARTICLE -->
+<main class="article">
+
+  <!-- TOC -->
+  <nav class="toc">
+    <p class="toc-title">Sommaire</p>
+    <ol>
+      <li><a href="#ecosysteme">Comprendre l'écosystème</a></li>
+      <li><a href="#nodejs">Installer Node.js</a></li>
+      <li><a href="#npm">Comprendre npm</a></li>
+      <li><a href="#vscode">Installer un éditeur de code : VS Code</a></li>
+      <li><a href="#vscode-vue">Configurer VS Code pour Vue.js</a></li>
+      <li><a href="#git">Installer Git</a></li>
+      <li><a href="#premier-projet">Créer ton premier projet Vue.js</a></li>
+      <li><a href="#structure">Structure du projet expliquée</a></li>
+      <li><a href="#modifier">Lancer et modifier ton application</a></li>
+      <li><a href="#commandes">Les commandes essentielles à connaître</a></li>
+      <li><a href="#erreurs">Résolution des erreurs courantes</a></li>
+      <li><a href="#suite">Et maintenant ?</a></li>
+    </ol>
+  </nav>
+
+  <!-- 1. ÉCOSYSTÈME -->
+  <section id="ecosysteme">
+    <h2><span class="num">01 —</span>Comprendre l'écosystème</h2>
+
+    <p>Avant de tout installer, prenons 5 minutes pour comprendre ce que font ces outils. Cela t'évitera beaucoup de confusion.</p>
+
+    <h3>Node.js — Le moteur JavaScript côté serveur</h3>
+
+    <p>JavaScript a été inventé pour fonctionner dans les navigateurs (Chrome, Firefox…). <strong>Node.js</strong> permet de faire tourner JavaScript <strong>en dehors du navigateur</strong>, directement sur ton ordinateur ou sur un serveur.</p>
+
+    <p>Concrètement, Node.js te sert à :</p>
+    <ul>
+      <li>Exécuter des scripts JavaScript sur ta machine</li>
+      <li>Faire tourner des outils de développement (comme Vue CLI)</li>
+      <li>Créer des serveurs web et des API</li>
+    </ul>
+
+    <div class="box box-tip">
+      <p class="box-label">Analogie</p>
+      <p>Si JavaScript est une voiture, Node.js est la route qui lui permet de rouler en dehors de la ville (le navigateur).</p>
+    </div>
+
+    <h3>npm — Le gestionnaire de paquets</h3>
+
+    <p>Quand tu installes Node.js, tu obtiens automatiquement <strong>npm</strong> (Node Package Manager). C'est un outil en ligne de commande qui te permet de télécharger et gérer des <strong>librairies</strong> (des morceaux de code réutilisables créés par la communauté).</p>
+
+    <div class="box box-info">
+      <p class="box-label">Analogie</p>
+      <p>npm, c'est comme un App Store pour les développeurs. Tu tapes une commande, et le code que tu veux est téléchargé et prêt à l'emploi.</p>
+    </div>
+
+    <h3>Vue.js — Le framework front-end</h3>
+
+    <p><strong>Vue.js</strong> est un framework JavaScript qui facilite la création d'interfaces utilisateur (UI) dynamiques et réactives. Il est réputé pour sa courbe d'apprentissage douce, ce qui en fait un excellent choix pour les débutants.</p>
+
+    <p>Avec Vue.js, tu vas construire des <strong>composants</strong> : des blocs réutilisables qui combinent du HTML, du CSS et du JavaScript.</p>
+
+    <h3>Le terminal (ou invite de commandes)</h3>
+
+    <p>Tu vas beaucoup utiliser le <strong>terminal</strong> (aussi appelé console ou invite de commandes). C'est une interface en mode texte où tu tapes des commandes pour interagir avec ton ordinateur. Pas de panique, on verra exactement quoi taper à chaque étape.</p>
+  </section>
+
+  <hr class="section-rule">
+
+  <!-- 2. INSTALLER NODE.JS -->
+  <section id="nodejs">
+    <h2><span class="num">02 —</span>Installer Node.js</h2>
+
+    <h3>Étape 1 : Télécharger Node.js</h3>
+
+    <p>Rends-toi sur <strong>nodejs.org</strong>. Tu verras deux versions disponibles :</p>
+    <ul>
+      <li><strong>LTS</strong> (Long Term Support) — <strong>Choisis celle-là.</strong> C'est la version stable et recommandée.</li>
+      <li><strong>Current</strong> — La version la plus récente, mais moins stable.</li>
+    </ul>
+
+    <p>Clique sur le bouton <strong>LTS</strong> pour télécharger l'installeur Windows (<code>.msi</code>).</p>
+
+    <h3>Étape 2 : Lancer l'installation</h3>
+
+    <ol>
+      <li>Double-clique sur le fichier <code>.msi</code> téléchargé.</li>
+      <li>Accepte les termes de la licence.</li>
+      <li>Laisse le chemin d'installation par défaut (<code>C:\Program Files\nodejs\</code>).</li>
+      <li>Sur l'écran "Custom Setup", laisse tout coché par défaut (notamment <strong>"Add to PATH"</strong>).</li>
+      <li>Clique sur <strong>Install</strong>, puis <strong>Finish</strong>.</li>
+    </ol>
+
+    <div class="box box-warn">
+      <p class="box-label">Important</p>
+      <p>L'option <strong>"Add to PATH"</strong> permet à Windows de reconnaître les commandes <code>node</code> et <code>npm</code> depuis n'importe quel terminal. Si tu la décoches, rien ne fonctionnera.</p>
+    </div>
+
+    <h3>Étape 3 : Vérifier l'installation</h3>
+
+    <p>Appuie sur <strong>Windows + R</strong>, tape <code>cmd</code>, et appuie sur <strong>Entrée</strong> pour ouvrir l'invite de commandes :</p>
+
+    <div class="code-block">
+      <p class="code-label">// Terminal — Vérification</p>
+      <code><span class="cmd">node</span> <span class="flag">--version</span>
+<span class="out">v20.11.0</span>
+
+<span class="cmd">npm</span> <span class="flag">--version</span>
+<span class="out">10.2.4</span></code>
+    </div>
+
+    <div class="box box-tip">
+      <p class="box-label">Succès</p>
+      <p>Si tu vois des numéros de version, Node.js est correctement installé ! Si tu vois une erreur du type <em>"node n'est pas reconnu..."</em>, redémarre ton ordinateur et réessaie.</p>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <!-- 3. NPM -->
+  <section id="npm">
+    <h2><span class="num">03 —</span>Comprendre npm</h2>
+
+    <p>Tu vas utiliser npm constamment. Voici les commandes de base à connaître :</p>
+
+    <table class="cmd-table">
+      <thead>
+        <tr>
+          <th>Commande</th>
+          <th>Ce qu'elle fait</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>npm install</code></td>
+          <td>Installe toutes les dépendances d'un projet existant</td>
+        </tr>
+        <tr>
+          <td><code>npm install nom-du-paquet</code></td>
+          <td>Installe un paquet spécifique</td>
+        </tr>
+        <tr>
+          <td><code>npm install -g nom-du-paquet</code></td>
+          <td>Installe un paquet globalement (disponible partout)</td>
+        </tr>
+        <tr>
+          <td><code>npm run dev</code></td>
+          <td>Lance le serveur de développement</td>
+        </tr>
+        <tr>
+          <td><code>npm run build</code></td>
+          <td>Compile le projet pour la production</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Le fichier package.json</h3>
+
+    <p>Chaque projet Node.js possède un fichier <code>package.json</code>. C'est la <strong>carte d'identité</strong> de ton projet : il liste les dépendances, les scripts disponibles, le nom et la version du projet.</p>
+
+    <div class="code-block">
+      <p class="code-label">// package.json — Exemple</p>
+      <code>{
+  <span class="key">"name"</span>: <span class="str">"mon-projet"</span>,
+  <span class="key">"version"</span>: <span class="str">"1.0.0"</span>,
+  <span class="key">"scripts"</span>: {
+    <span class="key">"dev"</span>: <span class="str">"vite"</span>,
+    <span class="key">"build"</span>: <span class="str">"vite build"</span>
+  },
+  <span class="key">"dependencies"</span>: {
+    <span class="key">"vue"</span>: <span class="str">"^3.4.0"</span>
+  }
+}</code>
+    </div>
+
+    <h3>Le dossier node_modules</h3>
+
+    <p>Quand tu lances <code>npm install</code>, toutes les librairies sont téléchargées dans un dossier <code>node_modules</code>. Ce dossier peut être très volumineux (plusieurs centaines de Mo). <strong>Ne le modifie jamais manuellement</strong> et ne le copie pas : il se regénère toujours avec <code>npm install</code>.</p>
+  </section>
+
+  <hr class="section-rule">
+
+  <!-- 4. VS CODE -->
+  <section id="vscode">
+    <h2><span class="num">04 —</span>Installer un éditeur de code : VS Code</h2>
+
+    <p><strong>Visual Studio Code</strong> (VS Code) est l'éditeur de code le plus populaire au monde. Il est gratuit, léger, et dispose d'un écosystème d'extensions gigantesque.</p>
+
+    <h3>Étape 1 : Télécharger et installer</h3>
+    <p>Rends-toi sur <strong>code.visualstudio.com</strong>, clique sur <strong>Download for Windows</strong> et lance l'installeur.</p>
+
+    <h3>Étape 2 : Options d'installation importantes</h3>
+    <p>Durant l'installation, <strong>coche impérativement ces options</strong> :</p>
+
+    <ul class="checklist">
+      <li><strong>Ajouter l'action "Ouvrir avec Code" au menu contextuel des fichiers</strong></li>
+      <li><strong>Ajouter l'action "Ouvrir avec Code" au menu contextuel des répertoires</strong></li>
+      <li><strong>Ajouter à PATH</strong> (permet de taper <code>code .</code> dans le terminal)</li>
+    </ul>
+
+    <h3>Étape 3 : Premier tour de VS Code</h3>
+
+    <div class="diagram">┌─────────────────────────────────────────────────────────┐
+│  [Explorateur]  [Recherche]  [Git]  [Extensions]        │  ← Barre latérale
+├──────────┬──────────────────────────────────────────────┤
+│          │                                              │
+│ Fichiers │         Zone d'édition                       │
+│  du      │         (ici tu écris ton code)              │
+│  projet  │                                              │
+│          │                                              │
+├──────────┴──────────────────────────────────────────────┤
+│  TERMINAL INTÉGRÉ  (Ctrl + `)                           │  ← Terminal
+└─────────────────────────────────────────────────────────┘</div>
+
+    <div class="box box-tip">
+      <p class="box-label">Astuce</p>
+      <p>Le terminal intégré de VS Code (raccourci <strong>Ctrl + `</strong>) te permet de taper des commandes sans quitter l'éditeur. Tu t'en serviras tout le temps.</p>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <!-- 5. VS CODE + VUE -->
+  <section id="vscode-vue">
+    <h2><span class="num">05 —</span>Configurer VS Code pour Vue.js</h2>
+
+    <p>VS Code devient vraiment puissant avec les bonnes extensions. Pour installer une extension : clique sur l'icône <strong>Extensions</strong> dans la barre latérale (ou <strong>Ctrl + Shift + X</strong>).</p>
+
+    <h3>1. Vue - Official (anciennement Volar)</h3>
+    <p>C'est <strong>l'extension officielle de Vue.js</strong>. Elle apporte la coloration syntaxique des fichiers <code>.vue</code>, l'autocomplétion, la détection des erreurs en temps réel et la navigation entre composants.</p>
+
+    <h3>2. ESLint</h3>
+    <p>Analyse ton code et te signale les erreurs et les mauvaises pratiques <strong>pendant que tu écris</strong>. Indispensable pour écrire du code propre dès le début.</p>
+
+    <h3>3. Prettier - Code formatter</h3>
+    <p>Prettier <strong>formate automatiquement</strong> ton code pour qu'il soit toujours propre et cohérent. Pour activer le formatage à la sauvegarde : <strong>Ctrl + ,</strong>, puis coche <strong>"Editor: Format On Save"</strong>.</p>
+
+    <h3>4. GitLens</h3>
+    <p>Améliore l'intégration Git dans VS Code : tu vois qui a modifié chaque ligne, l'historique des fichiers, etc.</p>
+
+    <h3>5. Auto Rename Tag</h3>
+    <p>Quand tu renommes une balise HTML ouvrante, la balise fermante est <strong>automatiquement renommée</strong>. Un gain de temps fou.</p>
+  </section>
+
+  <hr class="section-rule">
+
+  <!-- 6. GIT -->
+  <section id="git">
+    <h2><span class="num">06 —</span>Installer Git</h2>
+
+    <p><strong>Git</strong> est un outil de <strong>contrôle de version</strong>. Il te permet de sauvegarder l'historique de ton code, de revenir à une version précédente, et de collaborer avec d'autres développeurs. Même si tu travailles seul, tu dois connaître Git.</p>
+
+    <h3>Installation et configuration</h3>
+
+    <p>Rends-toi sur <strong>git-scm.com</strong> et télécharge l'installeur Windows. Choix recommandés :</p>
+
+    <ul>
+      <li><strong>Éditeur par défaut</strong> : sélectionne Visual Studio Code</li>
+      <li><strong>PATH environment</strong> : "Git from the command line and also from 3rd-party software"</li>
+      <li><strong>Line ending</strong> : laisse l'option par défaut</li>
+    </ul>
+
+    <div class="code-block">
+      <p class="code-label">// Terminal — Configuration de ton identité Git</p>
+      <code><span class="cmd">git</span> config <span class="flag">--global</span> user.name <span class="str">"Ton Prénom Nom"</span>
+<span class="cmd">git</span> config <span class="flag">--global</span> user.email <span class="str">"ton@email.com"</span>
+
+<span class="comment"># Vérifier l'installation</span>
+<span class="cmd">git</span> <span class="flag">--version</span>
+<span class="out">git version 2.43.0.windows.1</span></code>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <!-- 7. PREMIER PROJET -->
+  <section id="premier-projet">
+    <h2><span class="num">07 —</span>Créer ton premier projet Vue.js</h2>
+
+    <div class="pullquote">
+      L'heure est venue ! On utilise <em>Vite</em> (prononcé "vit"), l'outil de création de projet officiel et recommandé par Vue.js.
+    </div>
+
+    <h3>Étape 1 : Créer le projet</h3>
+
+    <p>Ouvre le terminal intégré de VS Code (<strong>Ctrl + `</strong>), navigue vers ton dossier de travail puis lance la création :</p>
+
+    <div class="code-block">
+      <p class="code-label">// Terminal — Création du projet</p>
+      <code><span class="cmd">cd</span> C:\Users\TonNom\Documents
+<span class="cmd">npm</span> create vue@latest</code>
+    </div>
+
+    <p>npm te pose une série de questions. Voici les choix recommandés pour un premier projet :</p>
+
+    <div class="code-block">
+      <p class="code-label">// Réponses recommandées</p>
+      <code><span class="out">✔ Project name: …</span> <span class="str">mon-premier-projet</span>
+<span class="out">✔ Add TypeScript? …</span> <span class="flag">No</span>
+<span class="out">✔ Add JSX Support? …</span> <span class="flag">No</span>
+<span class="out">✔ Add Vue Router? …</span> <span class="str">Yes</span>       <span class="comment">← pour la navigation entre pages</span>
+<span class="out">✔ Add Pinia? …</span> <span class="flag">No</span>
+<span class="out">✔ Add Vitest? …</span> <span class="flag">No</span>
+<span class="out">✔ Add an End-to-End Testing Solution? …</span> <span class="flag">No</span>
+<span class="out">✔ Add ESLint? …</span> <span class="str">Yes</span>        <span class="comment">← qualité du code</span>
+<span class="out">✔ Add Prettier? …</span> <span class="str">Yes</span>      <span class="comment">← formatage automatique</span></code>
+    </div>
+
+    <h3>Étape 2 : Installer et lancer</h3>
+
+    <div class="code-block">
+      <p class="code-label">// Terminal</p>
+      <code><span class="cmd">cd</span> mon-premier-projet
+<span class="cmd">npm</span> install
+<span class="cmd">npm</span> run dev
+
+<span class="out">  VITE v5.0.0  ready in 300 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose</span></code>
+    </div>
+
+    <p>Ouvre ton navigateur et va sur <strong>http://localhost:5173</strong>. Tu devrais voir la page d'accueil Vue.js !</p>
+
+    <div class="box box-vue">
+      <p class="box-label">Localhost</p>
+      <p><strong>localhost</strong> signifie "mon propre ordinateur". Le port <strong>5173</strong> est celui utilisé par Vite par défaut. L'application ne tourne que sur ta machine, personne d'autre ne peut y accéder.</p>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <!-- 8. STRUCTURE -->
+  <section id="structure">
+    <h2><span class="num">08 —</span>Structure du projet expliquée</h2>
+
+    <p>Ouvre le dossier du projet dans VS Code (<code>code .</code> dans le terminal). Voici ce que tu vois :</p>
+
+    <div class="tree">
+<span class="folder">mon-premier-projet/</span>
+│
+├── <span class="folder">node_modules/</span>        <span class="note">← Librairies installées (ne pas toucher)</span>
+│
+├── <span class="folder">public/</span>              <span class="note">← Fichiers statiques (favicon, images)</span>
+│   └── <span class="file">favicon.ico</span>
+│
+├── <span class="folder">src/</span>                 <span class="note">← TON CODE est ici !</span>
+│   │
+│   ├── <span class="folder">assets/</span>          <span class="note">← Images, fonts, CSS global</span>
+│   │   └── <span class="file">main.css</span>
+│   │
+│   ├── <span class="folder">components/</span>      <span class="note">← Composants Vue réutilisables</span>
+│   │   └── <span class="file">HelloWorld.vue</span>
+│   │
+│   ├── <span class="folder">router/</span>          <span class="note">← Configuration de la navigation</span>
+│   │   └── <span class="file">index.js</span>
+│   │
+│   ├── <span class="folder">views/</span>           <span class="note">← Les "pages" de ton application</span>
+│   │   ├── <span class="file">HomeView.vue</span>
+│   │   └── <span class="file">AboutView.vue</span>
+│   │
+│   ├── <span class="file">App.vue</span>             <span class="note">← Le composant racine</span>
+│   └── <span class="file">main.js</span>             <span class="note">← Initialisation de l'app Vue</span>
+│
+├── <span class="file">index.html</span>              <span class="note">← La page HTML de base</span>
+├── <span class="file">package.json</span>            <span class="note">← Infos du projet et dépendances</span>
+├── <span class="file">vite.config.js</span>          <span class="note">← Configuration de Vite</span>
+└── <span class="file">.eslintrc.cjs</span>           <span class="note">← Configuration d'ESLint</span></div>
+
+    <h3>Les fichiers .vue — Le coeur de Vue.js</h3>
+
+    <p>Chaque fichier <code>.vue</code> est un <strong>composant</strong>. Il est divisé en 3 sections :</p>
+
+    <div class="code-block">
+      <p class="code-label">// Composant Vue — Structure de base</p>
+      <code><span class="tag">&lt;template&gt;</span>
+  <span class="comment">&lt;!-- Le HTML de ton composant --&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"hello"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h1&gt;</span>{{ message }}<span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;button</span> <span class="vue-dir">@click</span>=<span class="str">"changerMessage"</span><span class="tag">&gt;</span>Clique ici<span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/template&gt;</span>
+
+<span class="tag">&lt;script setup&gt;</span>
+<span class="comment">// Le JavaScript de ton composant</span>
+<span class="cmd">import</span> { ref } <span class="cmd">from</span> <span class="str">'vue'</span>
+
+<span class="cmd">const</span> message = <span class="cmd">ref</span>(<span class="str">'Bonjour le monde !'</span>)
+
+<span class="cmd">function</span> <span class="attr">changerMessage</span>() {
+  message.value = <span class="str">'Tu as cliqué !'</span>
+}
+<span class="tag">&lt;/script&gt;</span>
+
+<span class="tag">&lt;style scoped&gt;</span>
+<span class="comment">/* Le CSS de ton composant (scoped = uniquement pour CE composant) */</span>
+.<span class="attr">hello</span> {
+  <span class="key">text-align</span>: center;
+  <span class="key">color</span>: <span class="str">#42b883</span>;
+}
+<span class="tag">&lt;/style&gt;</span></code>
+    </div>
+
+    <p>Les trois grandes règles à retenir :</p>
+    <ul>
+      <li><code>&lt;template&gt;</code> : Ce que l'utilisateur voit (HTML).</li>
+      <li><code>&lt;script setup&gt;</code> : La logique (données, fonctions).</li>
+      <li><code>&lt;style scoped&gt;</code> : Le style visuel (CSS, uniquement pour ce composant).</li>
+    </ul>
+  </section>
+
+  <hr class="section-rule">
+
+  <!-- 9. MODIFIER -->
+  <section id="modifier">
+    <h2><span class="num">09 —</span>Lancer et modifier ton application</h2>
+
+    <h3>Modifier ta première page</h3>
+
+    <p>Ouvre le fichier <code>src/views/HomeView.vue</code> et remplace le contenu :</p>
+
+    <div class="code-block">
+      <p class="code-label">// src/views/HomeView.vue</p>
+      <code><span class="tag">&lt;template&gt;</span>
+  <span class="tag">&lt;main&gt;</span>
+    <span class="tag">&lt;h1&gt;</span>Mon premier projet Vue.js !<span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Je suis en train d'apprendre Vue.js. C'est super !<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/main&gt;</span>
+<span class="tag">&lt;/template&gt;</span></code>
+    </div>
+
+    <p>Sauvegarde (<strong>Ctrl + S</strong>) et regarde ton navigateur : <strong>la page se met à jour automatiquement</strong> sans recharger. C'est le <strong>Hot Module Replacement (HMR)</strong> de Vite.</p>
+
+    <h3>Créer ton premier composant</h3>
+
+    <p>Crée un fichier <code>src/components/MonBouton.vue</code> :</p>
+
+    <div class="code-block">
+      <p class="code-label">// src/components/MonBouton.vue</p>
+      <code><span class="tag">&lt;template&gt;</span>
+  <span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"mon-bouton"</span> <span class="vue-dir">@click</span>=<span class="str">"$emit('click')"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;slot&gt;</span>Cliquez ici<span class="tag">&lt;/slot&gt;</span>
+  <span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/template&gt;</span>
+
+<span class="tag">&lt;script setup&gt;</span>
+<span class="cmd">defineEmits</span>([<span class="str">'click'</span>])
+<span class="tag">&lt;/script&gt;</span>
+
+<span class="tag">&lt;style scoped&gt;</span>
+.<span class="attr">mon-bouton</span> {
+  <span class="key">background-color</span>: <span class="str">#42b883</span>;
+  <span class="key">color</span>: white;
+  <span class="key">border</span>: none;
+  <span class="key">padding</span>: 10px 20px;
+  <span class="key">border-radius</span>: 6px;
+  <span class="key">font-size</span>: 16px;
+  <span class="key">cursor</span>: pointer;
+}
+.<span class="attr">mon-bouton</span>:hover {
+  <span class="key">background-color</span>: <span class="str">#33a06f</span>;
+}
+<span class="tag">&lt;/style&gt;</span></code>
+    </div>
+
+    <p>Puis utilise-le dans <code>HomeView.vue</code> :</p>
+
+    <div class="code-block">
+      <p class="code-label">// src/views/HomeView.vue — Avec composant</p>
+      <code><span class="tag">&lt;template&gt;</span>
+  <span class="tag">&lt;main&gt;</span>
+    <span class="tag">&lt;h1&gt;</span>Mon premier projet Vue.js !<span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;MonBouton</span> <span class="vue-dir">@click</span>=<span class="str">"direBonjour"</span><span class="tag">&gt;</span>Dire bonjour<span class="tag">&lt;/MonBouton&gt;</span>
+    <span class="tag">&lt;p</span> <span class="vue-dir">v-if</span>=<span class="str">"monMessage"</span><span class="tag">&gt;</span>{{ monMessage }}<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/main&gt;</span>
+<span class="tag">&lt;/template&gt;</span>
+
+<span class="tag">&lt;script setup&gt;</span>
+<span class="cmd">import</span> { ref } <span class="cmd">from</span> <span class="str">'vue'</span>
+<span class="cmd">import</span> MonBouton <span class="cmd">from</span> <span class="str">'@/components/MonBouton.vue'</span>
+
+<span class="cmd">const</span> monMessage = <span class="cmd">ref</span>(<span class="str">''</span>)
+
+<span class="cmd">function</span> <span class="attr">direBonjour</span>() {
+  monMessage.value = <span class="str">'Bonjour !'</span>
+}
+<span class="tag">&lt;/script&gt;</span></code>
+    </div>
+
+    <p>Sauvegarde et teste dans le navigateur. Ton bouton personnalisé fonctionne !</p>
+  </section>
+
+  <hr class="section-rule">
+
+  <!-- 10. COMMANDES -->
+  <section id="commandes">
+    <h2><span class="num">10 —</span>Les commandes essentielles à connaître</h2>
+
+    <h3>Navigation dans le terminal</h3>
+
+    <table class="cmd-table">
+      <thead>
+        <tr>
+          <th>Commande</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>cd nom-dossier</code></td><td>Entrer dans un dossier</td></tr>
+        <tr><td><code>cd ..</code></td><td>Remonter d'un niveau</td></tr>
+        <tr><td><code>ls</code> (ou <code>dir</code>)</td><td>Lister le contenu du dossier actuel</td></tr>
+        <tr><td><code>pwd</code></td><td>Afficher le chemin du dossier actuel</td></tr>
+        <tr><td><code>code .</code></td><td>Ouvrir VS Code dans le dossier actuel</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Commandes npm</h3>
+
+    <table class="cmd-table">
+      <thead>
+        <tr>
+          <th>Commande</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>npm install</code></td><td>Installer les dépendances du projet</td></tr>
+        <tr><td><code>npm install nom-paquet</code></td><td>Ajouter une librairie au projet</td></tr>
+        <tr><td><code>npm uninstall nom-paquet</code></td><td>Supprimer une librairie</td></tr>
+        <tr><td><code>npm run dev</code></td><td>Lancer le serveur de développement</td></tr>
+        <tr><td><code>npm run build</code></td><td>Compiler pour la production</td></tr>
+        <tr><td><code>npm run preview</code></td><td>Prévisualiser la version de production</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Commandes Git essentielles</h3>
+
+    <table class="cmd-table">
+      <thead>
+        <tr>
+          <th>Commande</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>git init</code></td><td>Initialiser un dépôt Git dans le dossier actuel</td></tr>
+        <tr><td><code>git status</code></td><td>Voir les fichiers modifiés</td></tr>
+        <tr><td><code>git add .</code></td><td>Préparer tous les fichiers modifiés pour un commit</td></tr>
+        <tr><td><code>git commit -m "message"</code></td><td>Sauvegarder les changements avec un message</td></tr>
+        <tr><td><code>git log --oneline</code></td><td>Voir l'historique des commits</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <hr class="section-rule">
+
+  <!-- 11. ERREURS -->
+  <section id="erreurs">
+    <h2><span class="num">11 —</span>Résolution des erreurs courantes</h2>
+
+    <h3>"node" n'est pas reconnu comme commande interne</h3>
+    <div class="box box-warn">
+      <p class="box-label">Cause &amp; Solution</p>
+      <p>Node.js n'est pas dans le PATH de Windows. Désinstalle Node.js, réinstalle-le en cochant bien l'option "Add to PATH", puis <strong>redémarre l'ordinateur</strong>.</p>
+    </div>
+
+    <h3>EACCES: permission denied</h3>
+    <div class="box box-warn">
+      <p class="box-label">Cause &amp; Solution</p>
+      <p>Problème de droits d'accès. Lance le terminal en tant qu'<strong>administrateur</strong> (clic droit sur CMD > Exécuter en tant qu'administrateur).</p>
+    </div>
+
+    <h3>npm ERR! code ENOENT ou module introuvable</h3>
+    <div class="box box-warn">
+      <p class="box-label">Cause &amp; Solution</p>
+      <p>Tu n'es pas dans le bon dossier, ou les dépendances ne sont pas installées. Vérifie avec <code>pwd</code>, puis lance <code>npm install</code>.</p>
+    </div>
+
+    <h3>Port déjà utilisé (EADDRINUSE)</h3>
+    <div class="box box-warn">
+      <p class="box-label">Cause &amp; Solution</p>
+      <p>Une autre instance du serveur tourne déjà. Ferme l'autre terminal ou utilise <code>npm run dev -- --port 3000</code> pour changer de port.</p>
+    </div>
+
+    <h3>Le navigateur affiche une page blanche</h3>
+    <div class="box box-warn">
+      <p class="box-label">Cause &amp; Solution</p>
+      <p>Erreur JavaScript dans le code. Ouvre les outils développeur (<strong>F12</strong> > onglet <strong>Console</strong>) pour voir l'erreur en détail.</p>
+    </div>
+
+    <h3>VS Code ne colore pas les fichiers .vue</h3>
+    <div class="box box-info">
+      <p class="box-label">Cause &amp; Solution</p>
+      <p>L'extension <strong>Vue - Official</strong> n'est pas installée. Va dans les extensions (<strong>Ctrl + Shift + X</strong>), cherche "Vue - Official", installe-la et recharge VS Code.</p>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <!-- 12. SUITE -->
+  <section id="suite">
+    <h2><span class="num">12 —</span>Et maintenant ?</h2>
+
+    <div class="pullquote">
+      La meilleure façon d'apprendre est de construire des projets qui t'intéressent vraiment. Commence <em>petit</em>, et augmente la complexité progressivement.
+    </div>
+
+    <h3>Niveau 1 — Les bases de Vue.js</h3>
+    <ul>
+      <li>Lis la documentation officielle Vue.js (elle est excellente et disponible en français)</li>
+      <li>Comprends les concepts clés : réactivité (<code>ref</code>, <code>reactive</code>), directives (<code>v-if</code>, <code>v-for</code>, <code>v-model</code>), props et émissions</li>
+    </ul>
+
+    <h3>Niveau 2 — Aller plus loin</h3>
+    <ul>
+      <li>Apprends <strong>Vue Router</strong> pour créer une navigation multi-pages</li>
+      <li>Découvre <strong>Pinia</strong> pour gérer l'état global de ton application</li>
+      <li>Utilise une bibliothèque UI comme <strong>Vuetify</strong> ou <strong>PrimeVue</strong></li>
+    </ul>
+
+    <h3>Niveau 3 — Écosystème complet</h3>
+    <ul>
+      <li>Connecte ton front-end Vue.js à un back-end Node.js (API REST avec <strong>Express.js</strong>)</li>
+      <li>Apprends les bases de Git et crée un compte <strong>GitHub</strong></li>
+      <li>Explore <strong>TypeScript</strong> pour un code plus robuste</li>
+    </ul>
+
+    <div class="box box-tip">
+      <p class="box-label">Conseil final</p>
+      <p>Commence petit (une todo list, une météo app, un quiz), et augmente la complexité progressivement. L'essentiel est de <strong>pratiquer régulièrement</strong> plutôt que d'essayer tout comprendre d'un coup. Bon développement !</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Guide Node.js & Vue.js pour débutants · Rédigé avec soin pour la communauté francophone</p>
+  <p style="margin-top:8px;opacity:.6">npm run dev — Votre aventure commence ici</p>
+</footer>
+
+</body>
+</html>

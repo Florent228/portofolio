@@ -1,7 +1,7 @@
 const aboutData = {
     title: "À propos de moi",
     subtitle: "Découvrez mon parcours, mes passions",
-    image: "/assets/profile.png",
+    image: "/assets/profile.png?v=2",
 
     biodata: [
         { label: "Nom", value: "Florent ATCHEAKOU", icon: "bx bx-id-card" },
