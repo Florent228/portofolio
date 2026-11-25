@@ -1,9 +1,10 @@
+import profileData from "./profileData.jsx";
+
 const footerData = {
     brand: {
-        name: "Florent ATCHEAKOU",
+        name: profileData.brand,
         icon: "bx bx-code-alt",
-        description:
-            "Développeur Full Stack, Expert en Informatique & Systèmes d’Information",
+        description: `${profileData.name} · ${profileData.shortBio}`,
     },
 
     navigationIcon: "bx bx-navigation",
@@ -11,42 +12,31 @@ const footerData = {
 
     navigation: [
         { label: "Accueil", href: "#home" },
-        { label: "À Propos", href: "#about" },
-        { label: "Projets", href: "#portofolio" },
+        { label: "Services", href: "#services" },
+        { label: "Réalisations", href: "#portofolio" },
+        { label: "À propos", href: "#about" },
         { label: "Contact", href: "#contact" },
     ],
 
     legalLinks: [
-        { label: "Politique de Confidentialité", href: "#privacy" },
-        { label: "Conditions d'Utilisation", href: "#terms" },
-        { label: "Plan du Site", href: "#sitemap" },
+        { label: "Mentions légales", href: "#legal" },
+        { label: "Politique de confidentialité", href: "#privacy" },
     ],
-
 
     socials: [
-        {
-            label: "WhatsApp",
-            icon: "bx bxl-whatsapp",
-            href: "https://wa.me/33636221770"
-        },
-        {
-            label: "GitHub",
-            icon: "bx bxl-github",
-            href: "https://github.com/Florent228"
-        }
+        { label: "LinkedIn", icon: "bx bxl-linkedin-square", href: profileData.links.linkedin },
+        { label: "WhatsApp", icon: "bx bxl-whatsapp", href: profileData.links.whatsapp },
+        { label: "GitHub", icon: "bx bxl-github", href: profileData.links.github },
     ],
-
-
-
 
     formSubscription: {
         title: "S'abonner à la Newsletter",
-        description: "Restez informé de mes derniers projets et articles.",
+        description: "Conseils pratiques et nouvelles réalisations, une fois par mois.",
         placeholder: "Entrez votre email",
         buttonText: "S'abonner",
     },
 
-    copyright: "© 2025 Florent ATCHEAKOU. Tous droits réservés.",
+    copyright: `© ${new Date().getFullYear()} ${profileData.brand} · ${profileData.name}, EI. Tous droits réservés.`,
 };
 
 export default footerData;

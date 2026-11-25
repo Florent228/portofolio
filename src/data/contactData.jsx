@@ -1,50 +1,29 @@
+import profileData from "./profileData.jsx";
+
 const contactData = {
     title: "Me Contacter",
-    subtitle: "Contactez-moi via formulaire, réseaux sociaux ou plateformes de soutien.",
-
-    tabs: [
-        {
-            label: "Formulaire",
-            value: "form",
-            icon: "bx bx-envelope",
-        },
-        {
-            label: "Réseaux",
-            value: "social",
-            icon: "bx bx-link",
-        },
-        {
-            label: "Me Soutenir",
-            value: "support",
-            icon: "bx bx-heart",
-        },
-    ],
+    subtitle: "Un projet, une question, un diagnostic ? Je vous réponds moi-même.",
 
     socials: [
         {
-            label: "GitHub",
-            href: "https://github.com/Florent228",
-            icon: "bx bxl-github",
-            description: "Explorez mon code et mes projets",
-        },
-        {
             label: "LinkedIn",
-            href: "https://www.linkedin.com/in/florent-atcheakou/",
+            href: profileData.links.linkedin,
             icon: "bx bxl-linkedin-square",
-            description: "Connectons-nous professionnellement",
+            description: "Échangeons sur votre projet",
         },
-        
-    ],
-
-    supportPlatforms: [
         {
-            label: "QRIS",
-            type: "image",
-            imageSrc: "/assets/qris.jpg",
-            alt: "Scanner pour soutenir via QRIS",
-        }
+            label: "WhatsApp",
+            href: profileData.links.whatsapp,
+            icon: "bx bxl-whatsapp",
+            description: profileData.phone,
+        },
+        {
+            label: "GitHub",
+            href: profileData.links.github,
+            icon: "bx bxl-github",
+            description: "Explorez mon code",
+        },
     ],
-
 };
 
 export default contactData;

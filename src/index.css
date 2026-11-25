@@ -7,6 +7,11 @@ html, body{
     scroll-behavior: smooth;
 }
 
+/* Every interactive element shows a pointer, except disabled ones. */
+a[href], button:not(:disabled), select, summary, label[for], [role="button"] {
+    cursor: pointer;
+}
+
 .scrollbar-hide {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;     /* Firefox */

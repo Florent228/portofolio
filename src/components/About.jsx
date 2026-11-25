@@ -70,7 +70,7 @@ const About = () => {
                         {/* Personal Info Heading */}
                         <div className="flex items-center gap-2 mb-4" data-aos-delay="600" data-aos="fade-down">
                             <i className="bx bx-info-circle text-2xl text-gray-800 dark:text-white" aria-hidden="true"></i>
-                            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">Informations personnelles</h2>
+                            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">{aboutData.infoTitle}</h2>
                         </div>
 
                         {/* Biodata Grid - 2x2 Layout */}

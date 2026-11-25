@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import homeData from "../data/homeData.jsx";
 import Tippy from '@tippyjs/react';
-import Swal from 'sweetalert2';
 
 const Home = () => {
   const [currentText, setCurrentText] = useState("");
@@ -53,7 +52,11 @@ const Home = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-5rem)] py-12">
           <div className="space-y-8">
             <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-white" data-aos-dely="600" data-aos="fade-down">
+              <p className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-white shadow" data-aos="fade-down">
+                <i className="bx bx-map" aria-hidden="true" />
+                {homeData.badge}
+              </p>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-800 dark:text-white" data-aos-delay="600" data-aos="fade-down">
                 {homeData.title}
               </h1>
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-800 dark:text-white flex items-center" data-aos-delay="600" data-aos="fade-right">
@@ -100,53 +103,25 @@ const Home = () => {
 
 
             <div className="flex flex-col sm:flex-row gap-4" data-aos-delay="600" data-aos="fade-down">
-              {homeData.buttons.map((btn, index) => (
-                <Tippy content={btn.label} key={index} placement="top">
-                  {btn.href && btn.href !== "#" ? (
-                    <a
-                      href={btn.href}
-                      className={`inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 ${btn.type === "primary"
-                        ? "bg-gray-800 dark:bg-white text-white dark:text-gray-800 hover:bg-gray-800 dark:hover:bg-gray-100"
-                        : "border-2 border-gray-800 dark:border-white text-gray-800 dark:text-white hover:bg-gray-800 hover:text-white dark:hover:bg-white dark:hover:text-gray-800"
-                        }`}
-                      target={btn.href.startsWith("http") ? "_blank" : "_self"}
-                      rel="noopener noreferrer"
-                    >
-                      <i className={`bx ${btn.type === "primary" ? "bx-download" : "bx-envelope"} mr-2`} />
-                      {btn.label}
-                    </a>
-                  ) : (
-                    <button
-                      onClick={() =>
-                        Swal.fire({
-                          title: "Pas Encore Disponible 😅",
-                          text: "Cette fonctionnalité ou ce fichier n'est pas encore prêt. Veuillez revenir plus tard !",
-                          icon: "info",
-                          confirmButtonColor: "#1F2937",
-                          confirmButtonText: "D'accord",
-                        })
-                      }
-                      className={`inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 ${btn.type === "primary"
-                        ? "bg-gray-800 dark:bg-white text-white dark:text-gray-800 hover:bg-gray-800 dark:hover:bg-gray-100"
-                        : "border-2 border-gray-800 dark:border-white text-gray-800 dark:text-white hover:bg-gray-800 hover:text-white dark:hover:bg-white dark:hover:text-gray-800"
-                        }`}
-                      aria-label={btn.label}
-                    >
-                      <i className={`bx ${btn.type === "primary" ? "bx-download" : "bx-envelope"} mr-2`} />
-                      {btn.label}
-                    </button>
-                  )}
-                </Tippy>
-
+              {homeData.buttons.map((btn) => (
+                <a
+                  key={btn.label}
+                  href={btn.href}
+                  className={`inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 ${btn.type === "primary"
+                    ? "bg-gray-800 dark:bg-white text-white dark:text-gray-800 hover:bg-gray-800 dark:hover:bg-gray-100"
+                    : "border-2 border-gray-800 dark:border-white text-gray-800 dark:text-white hover:bg-gray-800 hover:text-white dark:hover:bg-white dark:hover:text-gray-800"
+                    }`}
+                >
+                  <i className={`${btn.icon} mr-2`} aria-hidden="true" />
+                  {btn.label}
+                </a>
               ))}
-
             </div>
 
-       
             {/* Quick Stats Heading */}
             <h4 className="flex items-center gap-2 text-lg font-semibold mb-4 text-gray-800 dark:text-white">
               <i className="bx bx-bar-chart-alt text-base" />
-              Statistiques Rapides :
+              {homeData.statsTitle}
             </h4>
 
             {/* Stats Grid */}

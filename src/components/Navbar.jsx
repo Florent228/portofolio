@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import navbarData from "../data/navbarData.jsx";
+import profileData from "../data/profileData.jsx";
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -82,16 +83,16 @@ const Navbar = () => {
                 <div className="container">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="flex items-center justify-between py-4">
-                            <a href="#" className="flex items-center gap-2">
+                            <a href="#home" className="flex items-center gap-2">
                                 <i className="bx bx-code-alt text-2xl text-gray-800 dark:text-white"></i>
-                                <h1 className="text-2xl font-semibold text-gray-800 dark:text-white">
-                                    Mon Portfolio
-                                </h1>
+                                <span className="text-2xl font-semibold text-gray-800 dark:text-white">
+                                    {profileData.brand}
+                                </span>
                             </a>
 
 
                             <button
-                                className="md:hidden text-gray-700 dark:text-white focus:outline-none"
+                                className="lg:hidden text-gray-700 dark:text-white focus:outline-none"
                                 onClick={toggleMenu}
                                 aria-label="Toggle menu"
                             >
@@ -99,7 +100,7 @@ const Navbar = () => {
                             </button>
 
                             {/* Desktop Menu */}
-                            <ul className="hidden md:flex items-center gap-6">
+                            <ul className="hidden lg:flex items-center gap-2 xl:gap-4">
                                 {navbarData.map((item) => (
                                     <li key={item.id}>
                                         <a
@@ -122,7 +123,7 @@ const Navbar = () => {
 
             {/* Off-Canvas Mobile Menu */}
             <div
-                className={`fixed top-0 right-0 h-full w-70 bg-white dark:bg-gray-800 shadow-xl transform transition-transform duration-300 ease-in-out z-50 md:hidden ${isMenuOpen ? "translate-x-0" : "translate-x-full"
+                className={`fixed top-0 right-0 h-full w-70 bg-white dark:bg-gray-800 shadow-xl transform transition-transform duration-300 ease-in-out z-50 lg:hidden ${isMenuOpen ? "translate-x-0" : "translate-x-full"
                     }`}
             >
                 <div className="flex flex-col h-full">
@@ -185,7 +186,7 @@ const Navbar = () => {
                     {/* Footer */}
                     <div className="p-6 border-t border-gray-200 dark:border-gray-700">
                         <div className="text-center text-sm text-gray-500 dark:text-gray-400">
-                            © {currentYear()} Hizkia Siahaan. Tous droits réservés
+                            © {currentYear()} {profileData.brand}. Tous droits réservés
                         </div>
                     </div>
                 </div>

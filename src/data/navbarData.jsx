@@ -1,9 +1,10 @@
 const navbarData = [
   { id: "home", label: "Accueil", icon: "bx-home" },
-  { id: "about", label: "À Propos", icon: "bx-id-card" },
-  { id: "portofolio", label: "Portfolio", icon: "bx-code-alt" },
+  { id: "services", label: "Services", icon: "bx-layer" },
+  { id: "portofolio", label: "Réalisations", icon: "bx-briefcase" },
+  { id: "about", label: "À propos", icon: "bx-id-card" },
   { id: "articles", label: "Articles", icon: "bx-edit" },
-  { id: "testimonials", label: "Témoignages", icon: "bx-comment-detail" },
+  { id: "faq", label: "FAQ", icon: "bx-help-circle" },
   { id: "contact", label: "Contact", icon: "bx-envelope" },
 ];
 
