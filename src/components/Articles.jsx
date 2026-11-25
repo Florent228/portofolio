@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { articlesData } from "../data/articlesData.jsx";
+import { isDeadLink, disabledLinkClass } from "../utils/link.js";
 
 function formatDate(dateStr) {
     const date = new Date(dateStr);
@@ -84,13 +85,17 @@ const Articles = () => {
                             text: "text-gray-700 dark:text-gray-300",
                         };
 
+                        const isDisabled = isDeadLink(article.link);
+                        const CardTag = isDisabled ? "div" : "a";
+                        const cardProps = isDisabled
+                            ? { "aria-disabled": true, title: "Article bientôt disponible" }
+                            : { href: article.link, target: "_blank", rel: "noopener noreferrer" };
+
                         return (
-                            <a
+                            <CardTag
                                 key={article.id}
-                                href={article.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
+                                {...cardProps}
+                                className={`group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm transition-all duration-300 flex flex-col ${isDisabled ? disabledLinkClass : "hover:shadow-xl hover:-translate-y-1"}`}
                             >
                                 {/* Category Badge + Date */}
                                 <div className="flex items-center justify-between mb-4">
@@ -133,12 +138,19 @@ const Articles = () => {
                                         <i className="bx bx-time-five"></i>
                                         {article.readTime} de lecture
                                     </span>
-                                    <span className="text-sm font-medium text-gray-800 dark:text-white flex items-center gap-1 group-hover:gap-2 transition-all">
-                                        Lire
-                                        <i className="bx bx-right-arrow-alt text-lg"></i>
-                                    </span>
+                                    {isDisabled ? (
+                                        <span className="text-sm font-medium text-gray-500 dark:text-gray-400 flex items-center gap-1">
+                                            Bientôt disponible
+                                            <i className="bx bx-lock-alt text-lg"></i>
+                                        </span>
+                                    ) : (
+                                        <span className="text-sm font-medium text-gray-800 dark:text-white flex items-center gap-1 group-hover:gap-2 transition-all">
+                                            Lire
+                                            <i className="bx bx-right-arrow-alt text-lg"></i>
+                                        </span>
+                                    )}
                                 </div>
-                            </a>
+                            </CardTag>
                         );
                     })}
                 </div>

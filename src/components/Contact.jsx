@@ -1,7 +1,7 @@
 import { useState } from "react";
 import contactData from "../data/contactData.jsx";
 import Tippy from '@tippyjs/react';
-import Swal from 'sweetalert2';
+import { disabledLinkClass } from "../utils/link.js";
 
 const Contact = () => {
   const [activeTab, setActiveTab] = useState("contact");
@@ -89,23 +89,18 @@ const Contact = () => {
                     className="p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-white text-sm focus:outline-none focus:ring-2 focus:ring-gray-800"
                     rows="5"
                   />
-                  <Tippy content="Envoyer votre message" placement="top">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        Swal.fire({
-                          title: "Message Envoyé ! ✉️",
-                          text: "Merci de m'avoir contacté. Je vous répondrai bientôt !",
-                          icon: "success",
-                          confirmButtonColor: "#1F2937",
-                          confirmButtonText: "Parfait 😎",
-                        });
-                      }}
-                      className="px-4 py-3 bg-gray-800 text-white dark:bg-white dark:text-gray-800 rounded-lg font-medium flex items-center justify-center gap-2 transition-all transform hover:-translate-y-1"
-                    >
-                      Envoyer
-                      <i className="bx bx-send text-[1.2rem] translate-y-[1px]" />
-                    </button>
+                  <Tippy content="Formulaire bientôt disponible — contactez-moi via l'onglet Réseaux" placement="top">
+                    <span className="flex">
+                      <button
+                        type="button"
+                        disabled
+                        aria-disabled="true"
+                        className={`w-full px-4 py-3 bg-gray-300 text-gray-500 dark:bg-gray-600 dark:text-gray-400 rounded-lg font-medium flex items-center justify-center gap-2 ${disabledLinkClass}`}
+                      >
+                        Envoyer
+                        <i className="bx bx-send text-[1.2rem] translate-y-[1px]" />
+                      </button>
+                    </span>
                   </Tippy>
                 </form>
               </div>

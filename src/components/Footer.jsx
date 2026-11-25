@@ -1,6 +1,6 @@
 import footerData from "../data/footerData.jsx";
+import { isDeadLink, disabledLinkClass } from "../utils/link.js";
 import Tippy from '@tippyjs/react';
-import Swal from 'sweetalert2'
 
 const Footer = () => {
   return (
@@ -26,9 +26,15 @@ const Footer = () => {
           <ul className="flex flex-col gap-2 text-sm">
             {footerData.navigation.map((item, index) => (
               <li key={index}>
-                <a href={item.href} className="hover:text-blue-600 dark:hover:text-blue-400 transition">
-                  {item.label}
-                </a>
+                {isDeadLink(item.href) ? (
+                  <span aria-disabled="true" title="Bientôt disponible" className={disabledLinkClass}>
+                    {item.label}
+                  </span>
+                ) : (
+                  <a href={item.href} className="hover:text-blue-600 dark:hover:text-blue-400 transition">
+                    {item.label}
+                  </a>
+                )}
               </li>
             ))}
           </ul>
@@ -76,23 +82,18 @@ const Footer = () => {
               placeholder={footerData.formSubscription.placeholder}
               className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white"
             />
-            <Tippy content="Abonnez-vous à ma newsletter !">
+            <Tippy content="Newsletter bientôt disponible">
+              <span className="flex flex-col">
               <button
                 type="button"
-                onClick={() => {
-                  Swal.fire({
-                    title: "Bientôt Disponible ! 📬",
-                    text: "Cette fonctionnalité d'abonnement n'est pas encore active. Restez connecté !",
-                    icon: "info",
-                    confirmButtonColor: "#1F2937",
-                    confirmButtonText: "D'accord !",
-                  });
-                }}
-                className="px-4 py-3 bg-gray-800 shadow-lg text-white dark:bg-white dark:text-gray-800 rounded-lg font-medium flex items-center justify-center gap-2 transition-all transform hover:-translate-y-1 leading-none text-base"
+                disabled
+                aria-disabled="true"
+                className={`px-4 py-3 bg-gray-300 text-gray-500 dark:bg-gray-600 dark:text-gray-400 rounded-lg font-medium flex items-center justify-center gap-2 leading-none text-base ${disabledLinkClass}`}
               >
                 {footerData.formSubscription.buttonText}
                 <i className="bx bx-send text-[1.2rem] translate-y-[1px]" />
               </button>
+              </span>
             </Tippy>
 
 
@@ -109,15 +110,21 @@ const Footer = () => {
       <div className="mt-8 max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-sm text-gray-800 dark:text-white gap-4">
         {/* Legal Links */}
         <div className="flex gap-4 flex-wrap">
-          {footerData.legalLinks.map((link, index) => (
-            <a
-              key={index}
-              href={link.href}
-              className="hover:text-blue-600 dark:hover:text-blue-400 transition"
-            >
-              {link.label}
-            </a>
-          ))}
+          {footerData.legalLinks.map((link, index) =>
+            isDeadLink(link.href) ? (
+              <span key={index} aria-disabled="true" title="Bientôt disponible" className={disabledLinkClass}>
+                {link.label}
+              </span>
+            ) : (
+              <a
+                key={index}
+                href={link.href}
+                className="hover:text-blue-600 dark:hover:text-blue-400 transition"
+              >
+                {link.label}
+              </a>
+            )
+          )}
         </div>
 
 

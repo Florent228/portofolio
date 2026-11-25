@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { portfolioData } from "../data/portofolioData.jsx";
+import { isDeadLink, disabledLinkClass } from "../utils/link.js";
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
@@ -214,19 +215,33 @@ const Portfolio = () => {
                                             </span>
                                         ))}
                                     </div>
-                                    <Tippy content="Voir la Démo" placement="top">
-                                        <a
-                                            href={project.demo}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex justify-center w-full items-center gap-2 px-4 py-2 bg-gray-800 text-white dark:bg-white dark:text-gray-800 rounded-lg font-medium transition-all hover:-translate-y-1"
-                                        >
-                                            <span className="flex items-center gap-1">
-                                                <span>Démo</span>
-                                                <i className="bx bx-link-external"></i>
+                                    {isDeadLink(project.demo) ? (
+                                        <Tippy content="Démo bientôt disponible" placement="top">
+                                            <span
+                                                aria-disabled="true"
+                                                className={`inline-flex justify-center w-full items-center gap-2 px-4 py-2 bg-gray-300 text-gray-500 dark:bg-gray-600 dark:text-gray-400 rounded-lg font-medium ${disabledLinkClass}`}
+                                            >
+                                                <span className="flex items-center gap-1">
+                                                    <span>Démo</span>
+                                                    <i className="bx bx-lock-alt"></i>
+                                                </span>
                                             </span>
-                                        </a>
-                                    </Tippy>
+                                        </Tippy>
+                                    ) : (
+                                        <Tippy content="Voir la Démo" placement="top">
+                                            <a
+                                                href={project.demo}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex justify-center w-full items-center gap-2 px-4 py-2 bg-gray-800 text-white dark:bg-white dark:text-gray-800 rounded-lg font-medium transition-all hover:-translate-y-1"
+                                            >
+                                                <span className="flex items-center gap-1">
+                                                    <span>Démo</span>
+                                                    <i className="bx bx-link-external"></i>
+                                                </span>
+                                            </a>
+                                        </Tippy>
+                                    )}
 
                                 </div>
                             ))}
