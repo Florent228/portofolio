@@ -14,10 +14,10 @@ const homeData = {
   img: "/assets/profile.png?v=2",
   buttons: [
     {
-      label: "Demander un diagnostic",
+      label: "Parlons de votre projet",
       href: "#contact",
       type: "primary",
-      icon: "bx bx-search-alt-2",
+      icon: "bx bx-message-square-dots",
     },
     {
       label: "Voir mes réalisations",

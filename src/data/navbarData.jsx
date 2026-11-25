@@ -4,7 +4,6 @@ const navbarData = [
   { id: "portofolio", label: "Réalisations", icon: "bx-briefcase" },
   { id: "about", label: "À propos", icon: "bx-id-card" },
   { id: "articles", label: "Articles", icon: "bx-edit" },
-  { id: "faq", label: "FAQ", icon: "bx-help-circle" },
   { id: "contact", label: "Contact", icon: "bx-envelope" },
 ];
 

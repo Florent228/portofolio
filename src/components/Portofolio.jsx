@@ -202,19 +202,12 @@ const Portfolio = () => {
                                     <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-1">
                                         {project.title}
                                     </h3>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
                                         {project.subtitle}
                                     </p>
-                                    <dl className="flex flex-col gap-3 mb-4">
-                                        {["problem", "solution", "result"].map((key) => (
-                                            <div key={key} className="border-l-2 border-gray-800 dark:border-white pl-3">
-                                                <dt className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                                                    {portfolioData.caseLabels[key]}
-                                                </dt>
-                                                <dd className="text-sm text-gray-800 dark:text-white">{project[key]}</dd>
-                                            </div>
-                                        ))}
-                                    </dl>
+                                    <p className="text-sm text-gray-800 dark:text-white mb-4">
+                                        {project.summary}
+                                    </p>
                                     <div className="flex flex-wrap gap-2 mb-4">
                                         {project.tags.map((tag, index) => (
                                             <span

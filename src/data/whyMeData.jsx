@@ -1,32 +1,26 @@
-// The five core arguments of the commercial strategy (§6.1), each backed by a verifiable proof.
 const whyMeData = {
     title: "Pourquoi travailler avec moi",
-    subtitle: "Cinq engagements, chacun appuyé sur une preuve que vous pouvez vérifier.",
+    subtitle: "Un partenaire technique proche de vous, du premier échange à la mise en ligne.",
     items: [
         {
             icon: "bx bx-user-voice",
-            title: "Un seul interlocuteur, celui qui code",
-            proof: "Je réponds moi-même, du premier appel à la maintenance. Pas de chef de projet ni de commercial intermédiaire.",
+            title: "Un seul interlocuteur",
+            text: "Je vous réponds moi-même, du cadrage à la maintenance.",
         },
         {
             icon: "bx bx-bulb",
-            title: "Je comprends votre métier avant de coder",
-            proof: "Mastère Expert en informatique et SI (Bac+5, RNCP niveau 7) et un diagnostic proposé avant tout projet.",
+            title: "Votre métier d'abord",
+            text: "Je comprends vos besoins avant d'écrire une ligne de code.",
         },
         {
             icon: "bx bx-check-shield",
-            title: "Une expérience sur des projets exigeants",
-            proof: "Programme national ACORDA (environ 6 M€), cartographie d'une agglomération de 140 000 habitants, API backend en entreprise.",
-        },
-        {
-            icon: "bx bx-wallet",
-            title: "Un tarif adapté aux petites structures",
-            proof: "Une grille publique : site dès 1 200 € HT, diagnostic à 300 € déduit du projet signé ensuite.",
+            title: "Des projets exigeants",
+            text: "Collectivités, enseignement supérieur et entreprises.",
         },
         {
             icon: "bx bx-key",
-            title: "Vous restez propriétaire et autonome",
-            proof: "Code et nom de domaine à votre nom, documentation livrée et formation à la prise en main.",
+            title: "Vous restez autonome",
+            text: "Code, nom de domaine et documentation vous appartiennent.",
         },
     ],
 };

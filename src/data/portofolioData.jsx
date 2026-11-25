@@ -1,89 +1,70 @@
 export const portfolioData = {
     sectionTitle: {
         title: "Mes Réalisations",
-        subtitle: "Des projets réels pour des collectivités, l'enseignement supérieur et des entreprises : le problème, ce que j'ai construit, le résultat."
-    },
-
-    caseLabels: {
-        problem: "Le problème",
-        solution: "La solution",
-        result: "Le résultat",
+        subtitle: "Quelques projets menés pour des collectivités, l'enseignement supérieur et des entreprises."
     },
 
     tabs: {
-        // Ordered by commercial relevance: mapping and business tools first (strategy §6.3).
         projects: [
             {
                 id: 5,
                 img: "/assets/plan.png",
                 pillar: "Cartographie",
                 title: "Plan interactif d'agglomération",
-                subtitle: "Grand Bourg Agglomération · territoire de 140 000 habitants",
-                problem: "Les habitants devaient pouvoir trouver facilement les équipements publics du territoire.",
-                solution: "Une carte web interactive : recherche, filtres, géolocalisation, fiches contextuelles et calcul d'itinéraire.",
-                result: "Une plateforme en ligne, accessible à tous, depuis un ordinateur ou un téléphone.",
+                subtitle: "Grand Bourg Agglomération",
+                summary: "Carte web interactive pour trouver les équipements publics d'un territoire de 140 000 habitants.",
                 demo: "https://plan-inter-actif.vercel.app",
-                tags: ["Leaflet", "PHP", "JavaScript", "PostgreSQL", "Tailwind CSS"]
+                tags: ["Leaflet", "PHP", "PostgreSQL"]
             },
             {
                 id: 4,
                 img: "/assets/gestions.png",
                 pillar: "Outil métier",
-                title: "Logiciel de gestion des demandes du service SIG",
-                subtitle: "Grand Bourg Agglomération · service SIG",
-                problem: "Les demandes et projets du service SIG arrivaient par des canaux dispersés, difficiles à suivre.",
-                solution: "Un outil de gestion interne sur mesure : saisie, affectation, suivi d'avancement et historique des demandes.",
-                result: "Un suivi centralisé : chaque demande est tracée, de sa réception à son traitement.",
+                title: "Gestion des demandes du service SIG",
+                subtitle: "Grand Bourg Agglomération",
+                summary: "Outil interne sur mesure pour suivre les demandes et projets du service SIG.",
                 demo: "#",
-                tags: ["PHP", "JavaScript", "PostgreSQL", "Tailwind CSS"]
+                tags: ["PHP", "JavaScript", "PostgreSQL"]
             },
             {
                 id: 2,
                 img: "/assets/project2.png",
                 pillar: "Application web",
-                title: "Explorateur de parcours académiques ACORDA",
-                subtitle: "COMUE de Toulouse · programme national d'environ 6 M€",
-                problem: "Lycéens et étudiants peinaient à visualiser et comparer l'offre de formation de l'Académie de Toulouse.",
-                solution: "Une application de recherche et de cartographie : filtres par niveau, filière et lieu, fiches établissement et parcours.",
-                result: "Un outil intégré au programme ACORDA pour améliorer l'orientation et l'insertion professionnelle.",
+                title: "Explorateur de parcours ACORDA",
+                subtitle: "COMUE de Toulouse",
+                summary: "Recherche et cartographie de l'offre de formation de l'Académie de Toulouse.",
                 demo: "#",
-                tags: ["Node.js", "Express", "D3.js", "MySQL", "Tailwind CSS"]
+                tags: ["Node.js", "D3.js", "MySQL"]
             },
             {
                 id: 1,
                 img: "/assets/project1.png",
                 pillar: "Data & IA",
                 title: "Générateur de parcours d'orientation",
-                subtitle: "Recommander des formations vers un métier cible",
-                problem: "Passer d'un profil d'élève (bac, compétences, contraintes) à un métier visé, sans se perdre dans l'offre de formation.",
-                solution: "Un moteur de recommandation basé sur les données éducatives, avec des briques NLP et un scoring des parcours.",
-                result: "Des parcours personnalisés, accompagnés d'une explication de chaque recommandation.",
+                subtitle: "Recommandation personnalisée",
+                summary: "Des parcours de formation recommandés vers un métier cible, grâce au NLP et au scoring.",
                 demo: "#",
-                tags: ["Python", "NLP", "Node.js", "API REST", "MySQL"]
+                tags: ["Python", "NLP", "Node.js"]
             },
             {
                 id: 3,
                 img: "/assets/yom.png",
-                pillar: "MVP / plateforme",
-                title: "YOM, plateforme de mise en relation",
-                subtitle: "Trouver le bon prestataire, au bon moment",
-                problem: "Les clients cherchent un professionnel qualifié, les prestataires manquent de visibilité.",
-                solution: "Une plateforme web et mobile : profils publics de prestataires, recherche par domaine, mise en relation.",
-                result: "Une plateforme en production, sur le web et sur mobile.",
+                pillar: "Plateforme",
+                title: "YOM",
+                subtitle: "Plateforme de mise en relation",
+                summary: "Application web et mobile qui connecte clients et prestataires qualifiés.",
                 demo: "https://yom-app.com/",
-                tags: ["Vue.js", "React Native", "Node.js", "API REST", "MySQL"]
+                tags: ["Vue.js", "React Native", "Node.js"]
             },
             {
                 id: 6,
                 img: "/assets/formaconfiance.jpg",
-                pillar: "Site & contenu",
-                title: "Plateforme de sensibilisation aux réseaux sociaux",
-                subtitle: "Comprendre les risques pour mieux se protéger",
-                problem: "Rendre accessibles et engageants les bons réflexes face aux dangers des réseaux sociaux.",
-                solution: "Une plateforme éducative : quiz pédagogiques, guides pratiques et articles explicatifs.",
-                result: "Une plateforme en ligne, pensée pour être simple à prendre en main.",
+                pillar: "Site web",
+                title: "Formaconfiance",
+                subtitle: "Plateforme de sensibilisation",
+                summary: "Quiz, guides et articles pour adopter les bons réflexes sur les réseaux sociaux.",
                 demo: "https://formaconfiance.vercel.app/",
-                tags: ["Vue.js", "JavaScript", "Tailwind CSS"]
+                tags: ["Vue.js", "Tailwind CSS"]
             }
         ],
 
@@ -92,7 +73,6 @@ export const portfolioData = {
             { id: 2, img: "/assets/lpsig.jpg" },
         ],
 
-        // Only technologies already used in real projects (strategy §10.5).
         techStacks: [
             {
                 title: "Développement web & mobile",

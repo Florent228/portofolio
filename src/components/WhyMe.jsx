@@ -8,7 +8,7 @@ const WhyMe = () => (
                 <p className="text-lg dark:text-gray-400">{whyMeData.subtitle}</p>
             </header>
 
-            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6" data-aos="fade-up">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" data-aos="fade-up">
                 {whyMeData.items.map((item) => (
                     <li
                         key={item.title}
@@ -18,7 +18,7 @@ const WhyMe = () => (
                             <i className={`${item.icon} text-2xl`} aria-hidden="true" />
                         </div>
                         <h3 className="text-lg font-bold leading-snug text-gray-800 dark:text-white">{item.title}</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">{item.proof}</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">{item.text}</p>
                     </li>
                 ))}
             </ul>
