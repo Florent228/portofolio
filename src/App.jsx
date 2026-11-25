@@ -7,14 +7,17 @@ import Contact from './components/Contact';
 import Testimonials from './components/Testimonial';
 import Portfolio from './components/Portofolio';
 import Articles from './components/Articles';
+import Services from './components/Services';
+
 function App() {
 
   return (
     <>
       <Navbar />
       <Home />
-      <About />
+      <Services />
       <Portfolio />
+      <About />
       <Articles />
       <Testimonials />
       <Contact />
