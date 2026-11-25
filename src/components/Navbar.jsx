@@ -20,7 +20,8 @@ const Navbar = () => {
                     }
                 });
             },
-            { threshold: 0.6 }
+            // A section is active when it crosses the middle of the viewport, whatever its height.
+            { rootMargin: "-50% 0px -50% 0px", threshold: 0 }
         );
 
         navbarData.forEach((item) => {

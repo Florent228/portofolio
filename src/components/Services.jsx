@@ -14,7 +14,7 @@ function PillarCard({ pillar }) {
             <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">{pillar.title}</h3>
             <p className="text-sm text-gray-600 dark:text-gray-300 mb-6">{pillar.promise}</p>
 
-            <ul className="flex flex-col divide-y divide-gray-200 dark:divide-gray-700 mt-auto">
+            <ul className="flex flex-col divide-y divide-gray-200 dark:divide-gray-700">
                 {pillar.offers.map((offer) => (
                     <li key={offer.name} className="py-3">
                         <div className="flex items-baseline justify-between gap-3">
@@ -36,7 +36,7 @@ const Services = () => {
     const { sectionTitle, pillars, diagnostic, dataAi, mapping, legalNote } = servicesData;
 
     return (
-        <section id="services" className="pb-20 bg-white dark:bg-gray-800 pt-20" data-aos-duration="1000" data-aos="fade-down">
+        <section id="services" className="pb-20 bg-white dark:bg-gray-800 pt-20 overflow-hidden" data-aos-duration="1000" data-aos="fade-down">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <header className="text-center mb-12 text-gray-800 dark:text-white">
                     <h2 className="text-5xl font-bold mb-2">{sectionTitle.title}</h2>

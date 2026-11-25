@@ -8,6 +8,8 @@ import Testimonials from './components/Testimonial';
 import Portfolio from './components/Portofolio';
 import Articles from './components/Articles';
 import Services from './components/Services';
+import WhyMe from './components/WhyMe';
+import Faq from './components/Faq';
 
 function App() {
 
@@ -17,9 +19,11 @@ function App() {
       <Home />
       <Services />
       <Portfolio />
+      <WhyMe />
       <About />
       <Articles />
       <Testimonials />
+      <Faq />
       <Contact />
       <Footer />
       <ScrollToTop />
