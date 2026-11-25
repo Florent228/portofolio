@@ -195,16 +195,26 @@ const Portfolio = () => {
                                                 <span className="text-sm font-medium">Voir en grand</span>
                                             </div>
                                         </div>
+                                        <span className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-semibold bg-gray-800/90 text-white dark:bg-white/90 dark:text-gray-800 shadow pointer-events-none">
+                                            {project.pillar}
+                                        </span>
                                     </div>
-                                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+                                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-1">
                                         {project.title}
                                     </h3>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                                         {project.subtitle}
                                     </p>
-                                    <p className="text-sm text-gray-800 dark:text-white mb-4">
-                                        {project.desc}
-                                    </p>
+                                    <dl className="flex flex-col gap-3 mb-4">
+                                        {["problem", "solution", "result"].map((key) => (
+                                            <div key={key} className="border-l-2 border-gray-800 dark:border-white pl-3">
+                                                <dt className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                                                    {portfolioData.caseLabels[key]}
+                                                </dt>
+                                                <dd className="text-sm text-gray-800 dark:text-white">{project[key]}</dd>
+                                            </div>
+                                        ))}
+                                    </dl>
                                     <div className="flex flex-wrap gap-2 mb-4">
                                         {project.tags.map((tag, index) => (
                                             <span
@@ -284,23 +294,21 @@ const Portfolio = () => {
 
                     {/* Tech Stack Tab */}
                     {activeTab === "tech" && (
-                        <div
-                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-                            data-aos-delay="600"
-                            data-aos="fade-down"
-                        >
-                            {portfolioData.tabs.techStacks.map((tech) => (
-                                <div
-                                    key={tech.id}
-                                    className="bg-white dark:bg-gray-800 border border-white rounded-lg p-6 shadow-lg hover:-translate-y-1 transition-transform flex flex-col items-center justify-center gap-4"
-                                >
-                                    <i
-                                        className={`${tech.icon}  text-6xl`}
-                                        style={{ color: tech.color }}
-                                    ></i>
-                                    <span className="text-lg font-medium text-gray-800 dark:text-white">
-                                        {tech.label}
-                                    </span>
+                        <div className="flex flex-col gap-10" data-aos-delay="600" data-aos="fade-down">
+                            {portfolioData.tabs.techStacks.map((group) => (
+                                <div key={group.title}>
+                                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">{group.title}</h3>
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                                        {group.items.map((tech) => (
+                                            <div
+                                                key={tech.label}
+                                                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-5 shadow-lg hover:-translate-y-1 transition-transform flex flex-col items-center justify-center gap-3"
+                                            >
+                                                <i className={`${tech.icon} text-5xl`} style={{ color: tech.color }} aria-hidden="true"></i>
+                                                <span className="text-base font-medium text-gray-800 dark:text-white">{tech.label}</span>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             ))}
                         </div>
